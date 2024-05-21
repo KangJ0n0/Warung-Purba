@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+
 class FoodstallResource extends Resource
 {
     protected static ?string $model = Foodstall::class;
@@ -40,7 +41,7 @@ class FoodstallResource extends Resource
                 Forms\Components\TextInput::make('foodstall_contact')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('foodstall_rating')
+                Forms\Components\Select::make('foodstall_rating')
                 ->options([
                     '1' => '1',
                     '2' => '2',
@@ -56,9 +57,11 @@ class FoodstallResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('foodstall_name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('foodstall_location')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('foodstall_desc')

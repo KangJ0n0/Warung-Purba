@@ -25,12 +25,12 @@ class FoodResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('food_name')
-                    ->required()
-                    ->maxLength(255),
                 Forms\Components\TextInput::make('foodstall_id')
                     ->required()
                     ->numeric(),
+                Forms\Components\TextInput::make('food_name')
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('food_price')
                     ->required()
                     ->numeric(),
@@ -45,9 +45,10 @@ class FoodResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('food_name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('foodstall_id')
-                    ->numeric()
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('food_price')
                     ->numeric()
@@ -58,7 +59,6 @@ class FoodResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable(),
-                 
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable(),
