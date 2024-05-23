@@ -40,7 +40,7 @@ class FoodstallResource extends Resource
                 Forms\Components\TextInput::make('foodstall_contact')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('foodstall_rating')
+                Forms\Components\Select::make('foodstall_rating')
                 ->options([
                     '1' => '1',
                     '2' => '2',

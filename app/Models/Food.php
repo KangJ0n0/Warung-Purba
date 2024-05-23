@@ -15,4 +15,6 @@ class Food extends Model
         'food_price',
         'food_pict',
     ];
+
+    
 }
