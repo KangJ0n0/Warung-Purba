@@ -12,41 +12,49 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Card;
 
 class FoodstallResource extends Resource
 {
     protected static ?string $model = Foodstall::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-building-storefront';
-
-    protected static ?string $navigationGroup = 'Foodstall Management';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Card::make()->schema([
                 Forms\Components\TextInput::make('foodstall_name')
+                    ->label('Nama Warung')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('foodstall_location')
+                    ->label('Lokasi')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('foodstall_desc')
+                Forms\Components\TextArea::make('foodstall_desc')
+                    ->label('Deskripsi')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('foodstall_pict')
+                    ->label('Foto')
                     ->required()
                     ->image(),
                 Forms\Components\TextInput::make('foodstall_contact')
+                    ->label('Kontak')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Select::make('foodstall_rating')
-                ->options([
-                    '1' => '1',
-                    '2' => '2',
-                    '3' => '3',
-                    '4' => '4',
-                    '5' => '5',
+                    ->label('Rating')
+                    ->required()
+                    ->options([
+                        '1' => '1',
+                        '2' => '2',
+                        '3' => '3',
+                        '4' => '4',
+                        '5' => '5',
+                    ]),
                 ]),
             ]);
     }
@@ -56,18 +64,29 @@ class FoodstallResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')
-                    ->searchable(),
+                    ->label('Id')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('foodstall_name')
-                    ->searchable(),
+                    ->label('Nama Warung')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('foodstall_location')
+                    ->label('Lokasi')
+                    ->limit(50)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('foodstall_desc')
+                    ->label('Deskripsi')
+                    ->limit(25)
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('foodstall_pict')
+                    ->label('Foto')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('foodstall_contact')
+                    ->label('Kontak')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('foodstall_rating')
+                    ->label('Rating')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

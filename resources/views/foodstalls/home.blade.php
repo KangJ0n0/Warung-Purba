@@ -46,9 +46,6 @@
     @else
         <p>No warungs found.</p>
     @endif
-
-    {{-- {{ $foodstalls->links() }} --}}
-@endsection
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
                 <img class="w-full h-32 object-cover" src="https://placehold.co/400x256" alt="A food stall grilling various skewers">
