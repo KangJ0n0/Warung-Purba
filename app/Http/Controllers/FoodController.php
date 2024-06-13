@@ -14,6 +14,17 @@ class FoodController extends Controller
         $foods = Food::latest()->paginate(10);
 
         //render view with products
-        return view('foods.home', compact('foods'));
+        return view('makanan', compact('foods'));
+    }
+
+    public function search(Request $request){
+        $keyword = $request->search;
+
+        $result = Food::where('foodstall_name', 'like', '%' . $keyword . '%')->get();
+        return view('resultmakanan',
+        [
+            'keyword' => $keyword,
+            'foods' => $result
+        ]);
     }
 }

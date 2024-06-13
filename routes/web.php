@@ -1,6 +1,10 @@
 <?php
 
+use Doctrine\DBAL\Schema\Index;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FoodstallController; 
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('home');
@@ -42,6 +46,13 @@ Route::get('kontak', function () {
 
 Route::get('/foodstalls', [FoodstallController::class, 'index']);
 
-Route::resource('/foodstalls', \App\Http\Controllers\FoodstallController::class);
+Route::get('/warung', [FoodstallController::class, 'index']);
 
-Route::resource('/foods', \App\Http\Controllers\FoodController::class);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class,'index']);
+
+Route::get('/makanan', [FoodController::class, 'index']);
+
+Route::get('/dwarung', [FoodstallController::class, 'show']);
+
+Route::get('/search', [FoodstallController::class, 'search'])->name('search');

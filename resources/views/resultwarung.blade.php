@@ -49,9 +49,6 @@
                 </div>
             @endforeach
         </div>
-        <div>
-            {{ $foodstalls->links() }}
-        </div>
     @else
         <p>No warungs found.</p>
     @endif

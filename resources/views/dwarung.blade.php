@@ -20,11 +20,14 @@
       <div class="bg-gray-300 h-32 flex items-center justify-center">Image</div>
     </div>
     <!-- Info Section -->
-    <div class="mt-5">
+     @foreach ($foodstall as $w)
+     <div class="mt-5">
       <h1 class="text-3xl font-bold">Warung Oren</h1>
       <p class="text-gray-700">H8FQ+2GH, Dusun 2, Blater, Kec. Kalimanah, Kabupaten Purbalingga, Jawa Tengah 53371</p>
       <p class="text-gray-600">Tempat makan santai sebelah lapangan blater, Tempat duduk di area terbuka, Bawa pulang, Makan di tempat, Pembayaran tunai dan Qris</p>
     </div>
+     @endforeach
+    
     <!-- Food Menu Section -->
     <div class="mt-5">
       <h2 class="text-2xl font-bold">Semua Makanan di Warung Oren</h2>

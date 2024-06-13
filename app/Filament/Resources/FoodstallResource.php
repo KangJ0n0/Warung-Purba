@@ -7,9 +7,11 @@ use App\Filament\Resources\FoodstallResource\RelationManagers;
 use App\Models\Foodstall;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Components\FileUpload;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\ImageColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Card;
@@ -18,7 +20,7 @@ class FoodstallResource extends Resource
 {
     protected static ?string $model = Foodstall::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-building-storefront';
 
     public static function form(Form $form): Form
     {

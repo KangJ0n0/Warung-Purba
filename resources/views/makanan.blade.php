@@ -27,58 +27,21 @@
       <select class="border border-gray-300 rounded-md p-2">
         <option>Filter</option>
       </select>
-      <input type="text" class="border border-gray-300 rounded-md p-2 ml-4" placeholder="Search...">
+      <form action="{{route('search')}}" method="get">
+        <input type="search" name="search" class="border border-gray-300 rounded-md p-2 ml-4" placeholder="Search...">
+      </form>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    @foreach ($foods as $food)
       <div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <img class="w-full h-32 object-cover" src="https://placehold.co/400x256" alt="A food stall grilling various skewers">
+        <img class="w-full h-32 object-cover" src="{{$food->food_pict}}" alt="A food stall grilling various skewers">
         <div class="p-4">
-          <h3 class="font-bold text-lg">Makanan Oren</h3>
+          <h3 class="font-bold text-lg">{{$food->food_name}}</h3>
         </div>
       </div>
-      <div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <img class="w-full h-32 object-cover" src="https://placehold.co/400x256" alt="A cozy interior of a small restaurant">
-        <div class="p-4">
-          <h3 class="font-bold text-lg">Makanan Hijau</h3>
-        </div>
-      </div>
-      <div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <img class="w-full h-32 object-cover" src="https://placehold.co/400x256" alt="People buying food at a food stall">
-        <div class="p-4">
-          <h3 class="font-bold text-lg">Makanan Biru</h3>
-        </div>
-      </div>
-      <div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <img class="w-full h-32 object-cover" src="https://placehold.co/400x256" alt="A food stall grilling skewers with some food items displayed on the counter">
-        <div class="p-4">
-          <h3 class="font-bold text-lg">Makanan Putih</h3>
-        </div>
-      </div>
-      <div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <img class="w-full h-32 object-cover" src="https://placehold.co/400x256" alt="People buying food at a food stall">
-        <div class="p-4">
-          <h3 class="font-bold text-lg">Makanan Biru</h3>
-        </div>
-      </div>
-      <div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <img class="w-full h-32 object-cover" src="https://placehold.co/400x256" alt="A food stall grilling skewers with some food items displayed on the counter">
-        <div class="p-4">
-          <h3 class="font-bold text-lg">Makanan Putih</h3>
-        </div>
-      </div>
-      <div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <img class="w-full h-32 object-cover" src="https://placehold.co/400x256" alt="People buying food at a food stall">
-        <div class="p-4">
-          <h3 class="font-bold text-lg">Makanan Biru</h3>
-        </div>
-      </div>
-      <div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <img class="w-full h-32 object-cover" src="https://placehold.co/400x256" alt="A food stall grilling skewers with some food items displayed on the counter">
-        <div class="p-4">
-          <h3 class="font-bold text-lg">Makanan Putih</h3>
-        </div>
-      </div>
+      @endforeach
     </div>
+    {{ $foods->links() }}
   </div>
 </main>
 
