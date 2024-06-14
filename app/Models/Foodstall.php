@@ -9,6 +9,14 @@ class Foodstall extends Model
 {
     use HasFactory;
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function foods(){
+        return $this->hasMany(Food::class);
+    }
     protected $fillable = [
         'foodstall_name',
         'foodstall_location',

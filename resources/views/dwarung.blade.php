@@ -20,13 +20,11 @@
       <div class="bg-gray-300 h-32 flex items-center justify-center">Image</div>
     </div>
     <!-- Info Section -->
-     @foreach ($foodstall as $w)
-     <div class="mt-5">
-      <h1 class="text-3xl font-bold">Warung Oren</h1>
-      <p class="text-gray-700">H8FQ+2GH, Dusun 2, Blater, Kec. Kalimanah, Kabupaten Purbalingga, Jawa Tengah 53371</p>
-      <p class="text-gray-600">Tempat makan santai sebelah lapangan blater, Tempat duduk di area terbuka, Bawa pulang, Makan di tempat, Pembayaran tunai dan Qris</p>
+    <div class="mt-5">
+      <h1 class="text-3xl font-bold">{{$warung->foodstall_name}}</h1>
+      <p class="text-gray-700">{{$warung->foodstall_location}}</p>
+      <p class="text-gray-600">{{$warung->foodstall_desc}}</p>
     </div>
-     @endforeach
     
     <!-- Food Menu Section -->
     <div class="mt-5">
@@ -83,28 +81,20 @@
       <div class="flex justify-end mb-3">
         <a href="#" class="text-gray-600">Lihat semua komentar</a>
       </div>
+      @foreach ($reviews as $review)
       <div class="bg-white shadow p-4 mb-4 flex items-start">
         <div class="bg-gray-300 h-12 w-12 rounded-full flex items-center justify-center mr-4">O</div>
         <div>
-          <p class="font-bold">Nama Pereview</p>
-          <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Harum rerum reprehenderit, neque alias fugiat saepe ratione blanditiis quidem iusto dolore ab.</p>
+          <p class="font-bold">{{$review->account->account_name}}</p>
+          <p class="text-gray-600">{{$review->comment}}</p>
         </div>
       </div>
-      <div class="bg-white shadow p-4 mb-4 flex items-start">
-        <div class="bg-gray-300 h-12 w-12 rounded-full flex items-center justify-center mr-4">O</div>
-        <div>
-          <p class="font-bold">Nama Pereview</p>
-          <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Harum rerum reprehenderit, neque alias fugiat saepe ratione blanditiis quidem iusto dolore ab.</p>
-        </div>
-      </div>
-      <div class="bg-white shadow p-4 mb-4 flex items-start">
-        <div class="bg-gray-300 h-12 w-12 rounded-full flex items-center justify-center mr-4">O</div>
-        <div>
-          <p class="font-bold">Nama Pereview</p>
-          <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Harum rerum reprehenderit, neque alias fugiat saepe ratione blanditiis quidem iusto dolore ab.</p>
-        </div>
-      </div>
-      <textarea class="w-full p-3 border rounded" placeholder="Masukkan reviewmu..."></textarea>
+      @endforeach
+      <form action="{{route('review.store')}}" method="post">
+        @csrf
+        <textarea name="comment" class="w-full p-3 border rounded" placeholder="Masukkan reviewmu..."></textarea>
+        <button type="submit" class="bg-blue-500 text-white p-2 rounded mt-3">Kirim</button>
+      </form>
     </div>
   </div>
 </body>

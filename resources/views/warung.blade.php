@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   @vite('resources/css/app.css')
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  
 </head>
 
 <body>
@@ -36,6 +37,7 @@
             @foreach ($foodstalls as $foodstall)
                 <div class="bg-white shadow-md rounded-lg overflow-hidden">
                     <img class="w-full h-32 object-cover" src="{{ asset('storage/' . $foodstall->foodstall_pict) }}" alt="{{ $foodstall->foodstall_name }}">
+                    <a href="{{ route('dwarung', ['foodstall_id' => $foodstall->id]) }}">
                     <div class="p-4">
                         <h3 class="font-bold text-lg line-clamp-2">{{ $foodstall->foodstall_name }}</h3>
                         <p class="text-sm text-gray-600 truncate">{{ $foodstall->foodstall_location }}</p>
@@ -46,10 +48,11 @@
                             @endfor
                         </p>
                     </div>
+                    </a>
                 </div>
             @endforeach
         </div>
-        <div>
+        <div class="mt-8">
             {{ $foodstalls->links() }}
         </div>
     @else

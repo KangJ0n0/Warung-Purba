@@ -9,6 +9,10 @@ class Account extends Model
 {
     use HasFactory;
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
     protected $fillable = [
         'account_name',
         'email',

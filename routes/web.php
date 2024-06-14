@@ -1,12 +1,15 @@
 <?php
 
+
 use Doctrine\DBAL\Schema\Index;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FoodstallController; 
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\DWarungController;
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('home');
 });
 
@@ -42,17 +45,23 @@ Route::get('dwarung', function () {
 
 Route::get('kontak', function () {
     return view('kontak');
-});
+}); */
 
 Route::get('/foodstalls', [FoodstallController::class, 'index']);
-
 Route::get('/warung', [FoodstallController::class, 'index']);
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class,'index']);
-
 Route::get('/makanan', [FoodController::class, 'index']);
-
-Route::get('/dwarung', [FoodstallController::class, 'show']);
+Route::get('/dwarung', [FoodstallController::class, 'index']);
+Route::get('/dwarung/{foodstall_id}', [FoodstallController::class, 'show']);
 
 Route::get('/search', [FoodstallController::class, 'search'])->name('search');
+Route::get('/search', [FoodController::class, 'search'])->name('search');
+
+Route::get('/dwarung', [ReviewController::class, 'index'])
+    ->middleware('auth','verified')
+    ->name('dwarung');
+
+Route::post('/dwarung', [ReviewController::class, 'store'])
+    ->middleware('auth','verified')
+    ->name('review.store');

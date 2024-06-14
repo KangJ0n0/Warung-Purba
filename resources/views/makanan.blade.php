@@ -41,7 +41,9 @@
       </div>
       @endforeach
     </div>
-    {{ $foods->links() }}
+    <div class="mt-8">
+      {{ $foods->links() }}
+    </div>
   </div>
 </main>
 

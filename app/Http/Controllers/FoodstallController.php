@@ -18,19 +18,10 @@ class FoodstallController extends Controller
     public function index() : View
     {
         //get all foodstalls
-        $foodstalls = Foodstall::latest()->paginate(10);
+        $foodstalls = Foodstall::latest()->paginate(12);
 
         //render view with foodstalls
         return view('warung', compact('foodstalls'));
-    }
-
-    public function show() : View
-    {
-        //get the selected foodstall by id
-        $foodstall = Foodstall::where('foodstall_id', 1);
-
-        //render view with the selected foodstall
-        return view('dwarung', compact('foodstall'));
     }
 
     public function search(Request $request){
@@ -42,6 +33,15 @@ class FoodstallController extends Controller
             'keyword' => $keyword,
             'foodstalls' => $result
         ]);
+    }
+
+    public function show(string $foodstall_id): View
+    {
+        //get the selected foodstall by id
+        $warung = Foodstall::findOrFail($foodstall_id);
+
+        //render view with the selected foodstall
+        return view('dwarung', compact('warung'));
     }
 
 }

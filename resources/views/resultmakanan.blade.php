@@ -41,7 +41,6 @@
       </div>
       @endforeach
     </div>
-    {{ $foods->links() }}
   </div>
 </main>
 
