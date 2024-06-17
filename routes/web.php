@@ -5,49 +5,44 @@ use App\Http\Controllers\FoodstallController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::view('/', 'welcome');
+
+Route::view('dashboard', 'dashboard')
+    
+    ->name('dashboard');
+
+Route::view('profile', 'profile')
+    
+    ->name('profile');
+      
+Route::view('warung', 'warung')
+        ->name('warung');
+
+Route::view('makanan', 'makanan')
+        ->name('makanan');
+
+Route::view('kontak', 'kontak')
+        ->name('kontak');
 
 
-Route::get('/home', function () {
-    return view('home');
-});
 
 
-Route::get('/warung', function () {
-    return view('warung');
-});
+                Route::get('/foodstalls/{id}', [FoodstallController::class, 'show'])->name('foodstalls.show');
 
-Route::get('/makanan', function () {
-    return view('makanan');
-});
+                Route::resource('foodstalls', FoodstallController::class);
 
-Route::get('/profile', function () {
-    return view('profile');
-});
+                Route::get('/foodstalls/{foodstall}', [FoodstallController::class, 'show'])->name('foodstalls.show');
 
-Route::get('/login', function () {
-    return view('login');
-});
+                Route::get('/foods/{id_food}', [FoodController::class, 'show'])->name('foods.show');
 
-Route::get('/register', function () {
-    return view('register');
-});
+        
+        Route::get('/foodstalls', [FoodstallController::class, 'index']);
 
-Route::get('dwarung', function () {
-    return view('dwarung');
-});
+        Route::resource('/warung', FoodstallController::class);
+        
+        Route::resource('/home', HomeController::class);
+        Route::resource('', HomeController::class);
+        
+        Route::resource('/makanan', FoodController::class);
 
-Route::get('kontak', function () {
-    return view('kontak');
-});
-
-Route::get('/foodstalls', [FoodstallController::class, 'index']);
-
-Route::resource('/warung', FoodstallController::class);
-
-Route::resource('/home', HomeController::class);
-Route::resource('', HomeController::class);
-
-Route::resource('/makanan', FoodController::class);
+require __DIR__.'/auth.php';

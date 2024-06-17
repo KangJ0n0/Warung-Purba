@@ -18,4 +18,16 @@ class Foodstall extends Model
         'foodstall_rating',
         
     ];
+
+        // Define the relationship with Food
+        public function foods()
+        {
+            return $this->hasMany(Food::class, 'id_foodstall', 'id');
+        }
+    
+        // Define the relationship with Review
+        public function reviews()
+        {
+            return $this->hasMany(Review::class, 'foodstall_id', 'id');
+        }
 }

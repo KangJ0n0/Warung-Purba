@@ -1,108 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- resources/views/dwarung.blade.php -->
+
+<html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Warung Oren</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  @vite('resources/css/app.css')
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
-  <!-- Navbar -->
-<x-navbar>
-</x-navbar>
-  <div class="container mx-auto p-5">
-    <!-- Image Section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="col-span-2">
-        <div class="bg-gray-300 h-64 flex items-center justify-center">Image</div>
+<body>
+@section('content')
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+      <img class="w-full h-64 object-cover" src="{{ asset('storage/' . $foodstall->foodstall_pict) }}" alt="{{ $foodstall->foodstall_name }}">
+      <div class="p-4">
+        <h2 class="text-xl font-bold mb-2">{{ $foodstall->foodstall_name }}</h2>
+        <p class="text-sm text-gray-600 mb-2">{{ $foodstall->foodstall_location }}</p>
+        <p class="text-sm text-gray-600 mb-4">{{ $foodstall->foodstall_contact }}</p>
+        <p class="text-base text-gray-700 mb-4">{{ $foodstall->foodstall_desc }}</p>
+        <p class="text-sm text-gray-600">
+          Rating:
+          @for ($i = 0; $i < $foodstall->foodstall_rating; $i++)
+            ⭐
+          @endfor
+        </p>
       </div>
-      <div class="bg-gray-300 h-32 flex items-center justify-center">Image</div>
-      <div class="bg-gray-300 h-32 flex items-center justify-center">Image</div>
-    </div>
-    <!-- Info Section -->
-    <div class="mt-5">
-      <h1 class="text-3xl font-bold">Warung Oren</h1>
-      <p class="text-gray-700">H8FQ+2GH, Dusun 2, Blater, Kec. Kalimanah, Kabupaten Purbalingga, Jawa Tengah 53371</p>
-      <p class="text-gray-600">Tempat makan santai sebelah lapangan blater, Tempat duduk di area terbuka, Bawa pulang, Makan di tempat, Pembayaran tunai dan Qris</p>
-    </div>
-    <!-- Food Menu Section -->
-    <div class="mt-5">
-      <h2 class="text-2xl font-bold">Semua Makanan di Warung Oren</h2>
-      <div class="flex justify-end mb-3">
-        <button class="bg-white border border-gray-300 p-2 rounded">Filter</button>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <div class="bg-white shadow p-4">
-          <div class="bg-gray-300 h-32 mb-4 flex items-center justify-center">Image</div>
-          <p class="font-bold">Nama Makanan</p>
-          <p class="text-gray-600">Harga Rp 5000</p>
-        </div>
-        <div class="bg-white shadow p-4">
-          <div class="bg-gray-300 h-32 mb-4 flex items-center justify-center">Image</div>
-          <p class="font-bold">Nama Makanan</p>
-          <p class="text-gray-600">Harga Rp 5000</p>
-        </div>
-        <div class="bg-white shadow p-4">
-          <div class="bg-gray-300 h-32 mb-4 flex items-center justify-center">Image</div>
-          <p class="font-bold">Nama Makanan</p>
-          <p class="text-gray-600">Harga Rp 5000</p>
-        </div>
-        <div class="bg-white shadow p-4">
-          <div class="bg-gray-300 h-32 mb-4 flex items-center justify-center">Image</div>
-          <p class="font-bold">Nama Makanan</p>
-          <p class="text-gray-600">Harga Rp 5000</p>
-        </div>
-        <div class="bg-white shadow p-4">
-          <div class="bg-gray-300 h-32 mb-4 flex items-center justify-center">Image</div>
-          <p class="font-bold">Nama Makanan</p>
-          <p class="text-gray-600">Harga Rp 5000</p>
-        </div>
-        <div class="bg-white shadow p-4">
-          <div class="bg-gray-300 h-32 mb-4 flex items-center justify-center">Image</div>
-          <p class="font-bold">Nama Makanan</p>
-          <p class="text-gray-600">Harga Rp 5000</p>
-        </div>
-        <div class="bg-white shadow p-4">
-          <div class="bg-gray-300 h-32 mb-4 flex items-center justify-center">Image</div>
-          <p class="font-bold">Nama Makanan</p>
-          <p class="text-gray-600">Harga Rp 5000</p>
-        </div>
-        <div class="bg-white shadow p-4">
-          <div class="bg-gray-300 h-32 mb-4 flex items-center justify-center">Image</div>
-          <p class="font-bold">Nama Makanan</p>
-          <p class="text-gray-600">Harga Rp 5000</p>
-        </div>
-      </div>
-    </div>
-    <!-- Review Section -->
-    <div class="mt-5">
-      <h2 class="text-2xl font-bold">Review</h2>
-      <div class="flex justify-end mb-3">
-        <a href="#" class="text-gray-600">Lihat semua komentar</a>
-      </div>
-      <div class="bg-white shadow p-4 mb-4 flex items-start">
-        <div class="bg-gray-300 h-12 w-12 rounded-full flex items-center justify-center mr-4">O</div>
-        <div>
-          <p class="font-bold">Nama Pereview</p>
-          <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Harum rerum reprehenderit, neque alias fugiat saepe ratione blanditiis quidem iusto dolore ab.</p>
-        </div>
-      </div>
-      <div class="bg-white shadow p-4 mb-4 flex items-start">
-        <div class="bg-gray-300 h-12 w-12 rounded-full flex items-center justify-center mr-4">O</div>
-        <div>
-          <p class="font-bold">Nama Pereview</p>
-          <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Harum rerum reprehenderit, neque alias fugiat saepe ratione blanditiis quidem iusto dolore ab.</p>
-        </div>
-      </div>
-      <div class="bg-white shadow p-4 mb-4 flex items-start">
-        <div class="bg-gray-300 h-12 w-12 rounded-full flex items-center justify-center mr-4">O</div>
-        <div>
-          <p class="font-bold">Nama Pereview</p>
-          <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Harum rerum reprehenderit, neque alias fugiat saepe ratione blanditiis quidem iusto dolore ab.</p>
-        </div>
-      </div>
-      <textarea class="w-full p-3 border rounded" placeholder="Masukkan reviewmu..."></textarea>
     </div>
   </div>
+@endsection
+
+@section('scripts')
+  <script>
+    // Get the clicked id from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    // Make an API request to get the food stall data based on the id
+    fetch(`/api/foodstalls/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        // Update the food stall details on the page
+        document.querySelector('.max-w-7xl h2').textContent = data.foodstall_name;
+        document.querySelector('.max-w-7xl .text-gray-600:nth-of-type(1)').textContent = data.foodstall_location;
+        document.querySelector('.max-w-7xl .text-gray-600:nth-of-type(2)').textContent = data.foodstall_contact;
+        document.querySelector('.max-w-7xl .text-gray-700').textContent = data.foodstall_desc;
+
+        // Update the rating stars
+        const ratingContainer = document.querySelector('.max-w-7xl .text-gray-600:last-of-type');
+        ratingContainer.innerHTML = '';
+        for (let i = 0; i < data.foodstall_rating; i++) {
+          const star = document.createElement('span');
+          star.textContent = '⭐';
+          ratingContainer.appendChild(star);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  </script>
+@endsection
+
 </body>
 </html>

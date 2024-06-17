@@ -25,8 +25,8 @@ class ReviewResource extends Resource
         return $form
             ->schema([
                 Card::make()->schema([
-                Forms\Components\Select::make('account_id')
-                    ->relationship('account', 'account_name')
+                Forms\Components\Select::make('user_id')
+                    ->relationship('user', 'name')
                     ->label('Nama Akun')
                     ->required(),
                 Forms\Components\Select::make('foodstall_id')

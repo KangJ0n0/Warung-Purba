@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Foodstall;
 use Illuminate\View\View;
+
 class HomeController extends Controller
 {
     public function index() : View

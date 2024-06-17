@@ -10,7 +10,7 @@
 
 <body>
  
-  <x-navbar></x-navbar>
+    <x-app-layout>
   
 
   <div class="max-w-6xl mx-auto bg-white my-6 font-[sans-serif] text-[#011c2b]">
@@ -207,3 +207,4 @@
 <x-footer></x-footer>
 
 </html>
+</x-app-layout>

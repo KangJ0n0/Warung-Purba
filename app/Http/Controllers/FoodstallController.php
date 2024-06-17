@@ -8,6 +8,9 @@ use Illuminate\View\View;
 
 use Illuminate\Http\Request;
 
+use Illuminate\View\home;
+
+
 class FoodstallController extends Controller
 {
       /**
@@ -28,4 +31,14 @@ class FoodstallController extends Controller
     {
         return view('foodstalls.create');
     }
+
+    public function show($id)
+    {
+        $foodstall = Foodstall::findOrFail($id);
+        
+
+        return view('foodstalls.show', compact('foodstall'));
+    }
+
+    
 }

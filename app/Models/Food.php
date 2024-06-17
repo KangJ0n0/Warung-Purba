@@ -12,7 +12,7 @@ class Food extends Model
 
     public function foodstall()
   {
-    return $this->belongsTo(Foodstall::class);
+    return $this->belongsTo(Foodstall::class, 'id_foodstall');
   }
 
     protected $fillable = [
@@ -21,4 +21,5 @@ class Food extends Model
         'food_price',
         'food_pict',
     ];
+    
 }

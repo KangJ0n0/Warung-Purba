@@ -1,3 +1,4 @@
+<x-app-layout>
 <!doctype html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 
 <body>
  
-  <x-navbar></x-navbar>
+ 
   
 <!-- Hero Section -->
 <section class="bg-blue-100 py-16">
@@ -20,7 +21,7 @@
                 <p class="mt-4 text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Harum rerum reprehenderit, neque alias fugiat saepe ratione blanditiis quidem iusto dolore ab.</p>
                 <button class="mt-6 bg-blue-500 text-white px-6 py-3 rounded-full">Mulai</button>
             </div>
-            <div class="md:w-1/2 mt-8 md:mt-0">
+            <div class="md:w-1/2 mt-8 md:mt-0  hover:-translate-y-1 cursor-pointer transition-transform duration-300 transform hover:scale-105">
                 <img src="../../../images/hero.png" alt="Delicious food with rice and vegetables on a plate">
             </div>
         </div>
@@ -112,4 +113,6 @@
 </body>
 <x-footer></x-footer>
 
+
 </html>
+</x-app-layout>

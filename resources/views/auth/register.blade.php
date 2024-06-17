@@ -89,39 +89,51 @@
       </div>
     </div>
     <!-- Right Pane -->
-    <div class="w-full bg-gray-100 lg:w-1/2 flex items-center justify-center">
-      <div class="max-w-md w-full p-6">
-        <h1 class="text-3xl font-semibold mb-6 text-black text-center">Sign Up</h1>
-        <h1 class="text-sm font-semibold mb-6 text-gray-500 text-center">Join to Our Community with all time access and free </h1>
-        
-        <div class="mt-4 text-sm text-gray-600 text-center">
-        
-        </div>
-        <form action="#" method="POST" class="space-y-4">
-          <!-- Your form elements go here -->
-          <div>
-            <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-            <input type="text" id="username" name="username" class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+     <div class="w-full bg-gray-100 lg:w-1/2 flex items-center justify-center">
+        <div class="max-w-md w-full p-6">
+          <h1 class="text-3xl font-semibold mb-6 text-black text-center">Buat Akun</h1>
+          <h1 class="text-sm font-semibold mb-6 text-gray-500 text-center">Mari menjelajahi berbagai kuliner warung di Purbalingga</h1>
+
+          <form action="{{ route('register') }}" method="POST" class="space-y-4">
+              @csrf
+              <div>
+                  <label for="account_name" class="block text-sm font-medium text-gray-700">Nama Akun</label>
+                  <input type="text" id="account_name" name="account_name" class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300" value="{{ old('account_name') }}">
+                  @error('account_name')
+                      <div class="text-red-600 text-sm mt-1">Akun dengan nama tersebut sudah ada sebelumnya</div>
+                  @enderror
+              </div>
+              <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                  <input type="email" id="email" name="email" class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300" value="{{ old('email') }}">
+                  @error('email')
+                      <div class="text-red-600 text-sm mt-1">Masukan email valid yang belum pernah didaftarkan sebelumnya</div>
+                  @enderror
+              </div>
+              <div>
+                  <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                  <input type="password" id="password" name="password" class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                    @error('password')
+                      <div class="text-red-600 text-sm mt-1">Kata sandi minimal 8 karakter </div>
+                    @enderror
+              </div>
+              <div>
+                  <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
+                  <input type="password" id="password_confirmation" name="password_confirmation" class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                  @error('password')
+                      <div class="text-red-600 text-sm mt-1">Pastikan input sama dengan bagian Password </div>
+                    @enderror
+              </div>
+              <div>
+                <button type="submit" class="w-full bg-black text-white p-2 rounded-md hover:bg-gray-800 focus:outline-none focus:bg-black focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300">Daftar</button>
+              </div>
+          </form>
+          <div class="mt-4 text-sm text-gray-600 text-center">
+              <p>Sudah mempunyai akun? <a href="{{ route('login') }}" class="text-black hover:underline">Masuk</a></p>
           </div>
-          <div>
-            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-            <input type="text" id="email" name="email" class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
-          </div>
-          <div>
-            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-            <input type="password" id="password" name="password" class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
-          </div>
-          <div>
-            <button type="submit" class="w-full bg-black text-white p-2 rounded-md hover:bg-gray-800 focus:outline-none focus:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300">Sign Up</button>
-          </div>
-        </form>
-        <div class="mt-4 text-sm text-gray-600 text-center">
-          <p>Already have an account? <a href="login" class="text-black hover:underline">Login here</a>
-          </p>
-        </div>
       </div>
-    </div>
   </div>
+</div>
 
 </body>
 <x-footer></x-footer>

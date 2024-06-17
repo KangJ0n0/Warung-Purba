@@ -10,9 +10,9 @@ class Review extends Model
 {
     use HasFactory;
 
-    public function Account(): BelongsTo
+    public function User(): BelongsTo
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(User::class);
     }
 
     public function Foodstall(): BelongsTo
@@ -21,7 +21,7 @@ class Review extends Model
     }
 
     protected $fillable = [
-        'account_id',
+        'user_id',
         'foodstall_id',
         'comment',
         'rating',
