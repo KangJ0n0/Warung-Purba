@@ -85,5 +85,8 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('
                 ->uses([DashboardController::class, 'index']);
 
         Route::resource('/makanan', FoodController::class);
+        Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
+
+
 
 require __DIR__.'/auth.php';

@@ -2,40 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Foodstall;
-use App\Models\Food;
 use Illuminate\Http\Request;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
+
 
 class FavoriteController extends Controller
 {
-    public function toggleFavoriteFoodstall(Request $request, Foodstall $foodstall)
+    public function store(Request $request)
     {
-        $user = Auth::user();
         
-        if ($user->favoriteFoodstalls()->where('foodstall_id', $foodstall->id)->exists()) {
-            $user->favoriteFoodstalls()->detach($foodstall);
-            $message = 'Foodstall removed from favorites.';
+
+        $favorite = new Favorite();
+        $favorite->user_id = Auth::id();
+        $favorite->food_id = $request->food_id;
+
+        // Check if the favorite already exists
+        if (!Favorite::where('user_id', Auth::id())->where('food_id', $request->food_id)->exists()) {
+            $favorite->save();
+            return back()->with('success', 'Food bookmarked successfully!');
         } else {
-            $user->favoriteFoodstalls()->attach($foodstall);
-            $message = 'Foodstall added to favorites.';
+            return back()->with('info', 'This food is already in your favorites.');
         }
-        
-        return redirect()->back()->with('success', $message);
-    }
-    
-    public function toggleFavoriteFood(Request $request, Food $food)
-    {
-        $user = Auth::user();
-        
-        if ($user->favoriteFoods()->where('food_id', $food->id)->exists()) {
-            $user->favoriteFoods()->detach($food);
-            $message = 'Food removed from favorites.';
-        } else {
-            $user->favoriteFoods()->attach($food);
-            $message = 'Food added to favorites.';
-        }
-        
-        return redirect()->back()->with('success', $message);
     }
 }
