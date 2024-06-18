@@ -30,7 +30,7 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach ($foods as $food)
-                        <a href="{{ route('foods.show', $food->id_food) }}" class="block">
+                        <a href="{{ route('foods.show', $food->id) }}" class="block">
                             <div class="bg-white shadow-md rounded-lg overflow-hidden hover:-translate-y-1 cursor-pointer transition-transform duration-200 transform hover:scale-110">
                                 <img class="w-full h-32 object-cover" src="{{ asset('storage/' . $food->food_pict) }}" alt="{{ $food->food_name }}">
                                 <div class="p-4">

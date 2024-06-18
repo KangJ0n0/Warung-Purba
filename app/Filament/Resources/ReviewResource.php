@@ -45,7 +45,12 @@ class ReviewResource extends Resource
                         '3' => '3',
                         '4' => '4',
                         '5' => '5',
+                        
                     ]),
+                    Forms\Components\FileUpload::make('picture')
+                    ->label('Picture')
+                    ->accept('image/*')
+                    ->required(),
                 ]),
             ]);
     }
@@ -54,7 +59,7 @@ class ReviewResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('account.account_name')
+                Tables\Columns\TextColumn::make('users.name')
                 ->label('Nama Akun')
                 ->searchable(),
                 Tables\Columns\TextColumn::make('foodstall.foodstall_name')
@@ -67,6 +72,8 @@ class ReviewResource extends Resource
                 Tables\Columns\TextColumn::make('rating')
                 ->label('Rating')
                 ->searchable(),
+                Tables\Columns\ImageColumn::make('picture')
+                ->label('Picture')
             ])
             ->filters([
                 //

@@ -22,7 +22,7 @@ class Foodstall extends Model
         // Define the relationship with Food
         public function foods()
         {
-            return $this->hasMany(Food::class, 'id_foodstall', 'id');
+            return $this->hasMany(Food::class, 'foodstall_id');
         }
     
         // Define the relationship with Review
@@ -30,4 +30,16 @@ class Foodstall extends Model
         {
             return $this->hasMany(Review::class, 'foodstall_id', 'id');
         }
+
+        public function users()
+        {
+            return $this->belongsToMany(User::class, 'user_favorite_foodstalls')->withTimestamps();
+        }
+
+        public function show($id)
+{
+    $foodstall = Foodstall::with('reviews.user')->findOrFail($id);
+    return view('foodstalls.show', compact('foodstall'));
+}
+
 }

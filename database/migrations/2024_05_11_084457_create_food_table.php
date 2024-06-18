@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 return new class extends Migration
 {
     /**
@@ -12,15 +13,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('food', function (Blueprint $table) {
-            $table->id('id_food')->primaryKey();
+            $table->id();
             $table->string('food_name');
-            $table->foreignId('id')->constrained('foodstalls')->cascadeOnDelete();
+            $table->foreignId('foodstall_id')->constrained('foodstalls')->cascadeOnDelete();
             $table->integer('food_price');
             $table->string('food_pict');
 
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
@@ -29,4 +31,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('food');
     }
+
+    
 };

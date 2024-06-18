@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Foodstall;
 use Illuminate\View\View;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     public function index() : View
     {
@@ -14,9 +14,9 @@ class HomeController extends Controller
         $rekomendasi = Foodstall::where('foodstall_rating', 5)
         ->limit(3)
         ->get();
-
+        $user = auth()->user(); // Get the currently authenticated user
+        return view('dashboard', compact('rekomendasi', 'user'));
         //render view with products
-        return view('home', compact('rekomendasi'));
     }
 
 }

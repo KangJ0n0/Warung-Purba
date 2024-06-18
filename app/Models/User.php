@@ -6,10 +6,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
+
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+   
+    
+    public function favoriteFoodstalls()
+    {
+        return $this->belongsToMany(Foodstall::class, 'user_favorite_foodstalls')->withTimestamps();
+    }
+    
+    public function favoriteFoods()
+    {
+        return $this->belongsToMany(Food::class, 'user_favorite_foods')->withTimestamps();
+    }
+    
 
     /**
      * The attributes that are mass assignable.

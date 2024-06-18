@@ -30,17 +30,20 @@ new class extends Component
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                    <x-nav-link :href="url('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="('warung')" :active="request()->routeIs('warung')" wire:navigate>
+                    <x-nav-link :href="url('warung')" :active="request()->routeIs('warung')" wire:navigate>
                         {{ __('Warung') }}
                     </x-nav-link>
-                    <x-nav-link :href="('makanan')" :active="request()->routeIs('makanan')" wire:navigate>
+                    <x-nav-link :href="url('makanan')" :active="request()->routeIs('makanan')" wire:navigate>
                         {{ __('Makanan') }}
                     </x-nav-link>
-                    <x-nav-link :href="('kontak')" :active="request()->routeIs('kontak')" wire:navigate>
+                    <x-nav-link :href="url('kontak')" :active="request()->routeIs('kontak')" wire:navigate>
                         {{ __('Kontak') }}
+                    </x-nav-link>
+                    <x-nav-link :href="url('bookmarks')" :active="request()->routeIs('bookmarks')">
+                        {{ __('Bookmarks') }}
                     </x-nav-link>
                 </div>
             </div>

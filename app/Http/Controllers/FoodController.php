@@ -17,10 +17,9 @@ class FoodController extends Controller
         return view('makanan', compact('foods'));
     }
 
-        public function show($id)
+    public function show($id)
     {
         $food = Food::with('foodstall')->findOrFail($id);
         return view('foods.show', compact('food'));
     }
-
 }

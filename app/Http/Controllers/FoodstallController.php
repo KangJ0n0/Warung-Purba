@@ -25,7 +25,10 @@ class FoodstallController extends Controller
 
         //render view with products
         return view('warung', compact('foodstalls'));
+        
     }
+
+    
 
     public function create()
     {

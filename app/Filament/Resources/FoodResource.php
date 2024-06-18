@@ -49,6 +49,10 @@ class FoodResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id_food')
+                    ->label('ID Makanan')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('food_name')
                     ->label('Nama Makanan')
                     ->searchable()
