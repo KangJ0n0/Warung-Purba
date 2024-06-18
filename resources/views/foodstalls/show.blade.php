@@ -25,9 +25,13 @@
                             @endfor
                         </div>
                     </div>
-                    <form action="{{ url('bookmark', $foodstall->id) }}" method="POST" class="ml-4">
+                    <form action="{{ route('favorites.store') }}" method="POST">
                         @csrf
-                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md">Bookmark</button>
+                        <input type="hidden" name="foodstall_id" value="{{ $foodstall->id }}">
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">
+                            Bookmark
+                        </button>
+                    </form>
                     </form>
                 </div>
             </div>

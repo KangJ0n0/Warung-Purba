@@ -16,7 +16,8 @@ class User extends Authenticatable
     
     public function favoriteFoodstalls()
     {
-        return $this->belongsToMany(Foodstall::class, 'user_favorite_foodstalls')->withTimestamps();
+        return $this->belongsToMany(Foodstall::class, 'favorites', 'user_id', 'foodstall_id')
+                    ->withTimestamps();
     }
     
     public function favoriteFoods()
@@ -60,4 +61,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+        public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+    
 }

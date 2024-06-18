@@ -85,7 +85,12 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('
                 ->uses([DashboardController::class, 'index']);
 
         Route::resource('/makanan', FoodController::class);
-        Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
+     
+        Route::post('/toggle-favorite', [FavoriteController::class, 'toggleFavorite'])->name('toggleFavorite');
+        Route::get('/bookmarks', [FavoriteController::class, 'index'])->name('bookmarks');
+
+        Route::post('/favorites/store', [FavoriteController::class, 'store'])->name('favorites.store');
+        
 
 
 

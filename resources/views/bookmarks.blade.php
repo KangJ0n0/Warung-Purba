@@ -1,14 +1,4 @@
 <x-app-layout>
-
-    @guest
-        <!-- Modal -->
-        <div class="fixed inset-0 flex items-center justify-center z-50">
-            <div class="bg-white p-8 rounded-md shadow-md">
-                <p class="text-lg">Login dahulu untuk menyimpan.</p>
-            </div>
-        </div>
-    @endguest
-
     <x-slot name="header">
         <h2 class="text-2xl font-bold">Bookmarks</h2>
     </x-slot>
@@ -17,13 +7,14 @@
         <div class="grid grid-cols-2 gap-8">
             <div>
                 <h3 class="text-xl font-bold mb-4">Favorite Foodstalls</h3>
-                @foreach(Auth::user()->favoriteFoodstalls as $foodstall)
+                @foreach($favoriteFoodstalls as $favorite)
                     <div class="border p-4 mb-4 rounded-md shadow-md">
-                        <h4 class="text-lg font-semibold">{{ $foodstall->foodstall_name }}</h4>
-                        <p>{{ $foodstall->foodstall_location }}</p>
+                        <h4 class="text-lg font-semibold">{{ $favorite->foodstall->foodstall_name }}</h4>
+                        <p>{{ $favorite->foodstall->foodstall_location }}</p>
                         <!-- Add more details as needed -->
-                        <form action="{{ route('foodstalls.toggleFavorite', $foodstall->id) }}" method="POST">
+                        <form action="{{ route('toggleFavorite') }}" method="POST">
                             @csrf
+                            <input type="hidden" name="foodstall_id" value="{{ $favorite->foodstall_id }}">
                             <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">Remove from Favorites</button>
                         </form>
                     </div>
@@ -31,13 +22,13 @@
             </div>
             <div>
                 <h3 class="text-xl font-bold mb-4">Favorite Foods</h3>
-                @foreach(Auth::user()->favoriteFoods as $food)
+                @foreach($favoriteFoods as $favorite)
                     <div class="border p-4 mb-4 rounded-md shadow-md">
-                        <h4 class="text-lg font-semibold">{{ $food->food_name }}</h4>
-                     
+                        <h4 class="text-lg font-semibold">{{ $favorite->food->food_name }}</h4>
                         <!-- Add more details as needed -->
-                        <form action="{{ route('foods.toggleFavorite', $food->id) }}" method="POST">
+                        <form action="{{ route('toggleFavorite') }}" method="POST">
                             @csrf
+                            <input type="hidden" name="food_id" value="{{ $favorite->food_id }}">
                             <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">Remove from Favorites</button>
                         </form>
                     </div>
@@ -45,6 +36,4 @@
             </div>
         </div>
     </div>
-
-   
 </x-app-layout>

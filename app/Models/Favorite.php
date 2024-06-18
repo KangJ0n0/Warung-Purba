@@ -9,10 +9,17 @@ class Favorite extends Model
 {
     use HasFactory;
 
-    protected $table = 'user_favorite_foods';
+    protected $fillable = ['user_id', 'food_id', 'foodstall_id'];
+    public function food()
+    {
+        return $this->belongsTo(Food::class);
+    }
 
-    protected $fillable = [
-        'user_id',
-        'food_id',
-    ];
+    public function foodstall()
+    {
+        return $this->belongsTo(Foodstall::class);
+    }
+
+
+
 }
