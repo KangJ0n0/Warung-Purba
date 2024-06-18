@@ -1,5 +1,3 @@
-<!-- Update the main page blade template (index.blade.php) -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,15 +27,27 @@
                     <input type="text" class="border border-gray-300 rounded-md p-2 ml-4" placeholder="Search...">
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    @foreach ($foods as $food)
-                        <a href="{{ route('foods.show', $food->id) }}" class="block">
-                            <div class="bg-white shadow-md rounded-lg overflow-hidden hover:-translate-y-1 cursor-pointer transition-transform duration-200 transform hover:scale-110">
-                                <img class="w-full h-32 object-cover" src="{{ asset('storage/' . $food->food_pict) }}" alt="{{ $food->food_name }}">
-                                <div class="p-4">
-                                    <h3 class="font-bold text-lg">{{ $food->food_name }}</h3>
+                    @php
+                        // Array to store seen food names
+                        $seenFoodNames = [];
+                    @endphp
+
+                    @foreach ($foods->sortBy('id') as $food)
+                        @if (!in_array($food->food_name, $seenFoodNames))
+                            @php
+                                // Add current food name to seen list
+                                $seenFoodNames[] = $food->food_name;
+                            @endphp
+
+                            <a href="{{ route('foods.show', $food->id) }}" class="block">
+                                <div class="bg-white shadow-md rounded-lg overflow-hidden hover:-translate-y-1 cursor-pointer transition-transform duration-200 transform hover:scale-110">
+                                    <img class="w-full h-32 object-cover" src="{{ asset('storage/' . $food->food_pict) }}" alt="{{ $food->food_name }}">
+                                    <div class="p-4">
+                                        <h3 class="font-bold text-lg">{{ $food->food_name }}</h3>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        @endif
                     @endforeach
                 </div>
             </div>

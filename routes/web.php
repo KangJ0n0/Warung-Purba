@@ -66,8 +66,11 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('
                 
 
                 Route::get('/foodstalls/{foodstall}', [FoodstallController::class, 'show'])->name('foodstalls.show');
+                
 
                 Route::get('/foods/{id}', [FoodController::class, 'show'])->name('foods.show');
+
+
 
         
         Route::get('/foodstalls', [FoodstallController::class, 'index']);

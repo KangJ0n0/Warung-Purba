@@ -13,16 +13,22 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white shadow-md rounded-lg overflow-hidden mb-6">
                 <img class="w-full h-96 object-cover" src="{{ asset('storage/' . $foodstall->foodstall_pict) }}" alt="{{ $foodstall->foodstall_name }}">
-                <div class="p-6">
-                    <h2 class="text-3xl font-bold mb-2">{{ $foodstall->foodstall_name }}</h2>
-                    <p class="text-lg text-gray-700 mb-4">{{ $foodstall->foodstall_location }}</p>
-                    <p class="text-sm text-gray-600 mb-4">{{ $foodstall->foodstall_desc }}</p>
-                    <p class="text-sm text-gray-600 mb-2">Contact: {{ $foodstall->foodstall_contact }}</p>
-                    <div class="flex items-center mb-4">
-                        @for ($i = 0; $i < $foodstall->foodstall_rating; $i++)
-                            <span class="text-yellow-500">⭐</span>
-                        @endfor
+                <div class="p-6 flex justify-between items-start">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2">{{ $foodstall->foodstall_name }}</h2>
+                        <p class="text-lg text-gray-700 mb-4">{{ $foodstall->foodstall_location }}</p>
+                        <p class="text-sm text-gray-600 mb-4">{{ $foodstall->foodstall_desc }}</p>
+                        <p class="text-sm text-gray-600 mb-2">Contact: {{ $foodstall->foodstall_contact }}</p>
+                        <div class="flex items-center mb-4">
+                            @for ($i = 0; $i < $foodstall->foodstall_rating; $i++)
+                                <span class="text-yellow-500">⭐</span>
+                            @endfor
+                        </div>
                     </div>
+                    <form action="{{ url('bookmark', $foodstall->id) }}" method="POST" class="ml-4">
+                        @csrf
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md">Bookmark</button>
+                    </form>
                 </div>
             </div>
 
@@ -30,13 +36,15 @@
                 <h3 class="text-xl font-bold mb-4">Semua Makanan di Warung ({{ $foodstall->foodstall_name }})</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($foodstall->foods as $food)
-                        <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
-                            <img src="{{ asset('storage/' . $food->food_pict) }}" alt="{{ $food->food_name }}" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h4 class="text-lg font-semibold mb-2">{{ $food->food_name }}</h4>
-                                <p class="text-gray-600">{{ $food->food_price }}</p>
+                        @if ($food->foodstall_id === $foodstall->id)
+                            <div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
+                                <img src="{{ asset('storage/' . $food->food_pict) }}" alt="{{ $food->food_name }}" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h4 class="text-lg font-semibold mb-2">{{ $food->food_name }}</h4>
+                                    <p class="text-gray-600">{{ $food->food_price }}</p>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
@@ -55,7 +63,7 @@
                         @if ($review->picture)
                             <img src="{{ asset('storage/' . $review->picture) }}" alt="Review Picture" class="mt-2">
                         @endif
-                        @if (Auth::id() === $review->user_id || Auth::user()->role === 'admin')
+                        @if (Auth::check() && (Auth::id() === $review->user_id || Auth::user()->role === 'admin'))
                             <div class="mt-2 flex space-x-2">
                                 <a href="{{ route('reviews.edit', $review->id) }}" class="text-blue-500">Edit</a>
                                 <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this review?');">

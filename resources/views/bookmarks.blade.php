@@ -1,4 +1,14 @@
 <x-app-layout>
+
+    @guest
+        <!-- Modal -->
+        <div class="fixed inset-0 flex items-center justify-center z-50">
+            <div class="bg-white p-8 rounded-md shadow-md">
+                <p class="text-lg">Login dahulu untuk menyimpan.</p>
+            </div>
+        </div>
+    @endguest
+
     <x-slot name="header">
         <h2 class="text-2xl font-bold">Bookmarks</h2>
     </x-slot>
@@ -35,4 +45,6 @@
             </div>
         </div>
     </div>
+
+   
 </x-app-layout>

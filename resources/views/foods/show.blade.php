@@ -8,22 +8,34 @@
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
                 <img class="w-full h-64 object-cover" src="{{ asset('storage/' . $food->food_pict) }}" alt="{{ $food->food_name }}">
                 <div class="p-6">
-                    <p class="text-sm text-gray-600 mb-2">Price: Rp {{ number_format($food->food_price, 0, ',', '.') }}</p>
-                    @if ($food->foodstall)
+                    @php
+                        // Retrieve all foods with the same food_name as the current food
+                        $relatedFoods = \App\Models\Food::where('food_name', $food->food_name)
+                                        ->get();
+                    @endphp
+
+                    @if ($relatedFoods->isNotEmpty())
                         <div class="bg-gray-100 p-4 rounded-lg mt-4">
-                            <h3 class="text-lg font-bold mb-2">Foodstall Information</h3>
-                            <img class="w-full h-32 object-cover mb-4" src="{{ asset('storage/' . $food->foodstall->foodstall_pict) }}" alt="{{ $food->foodstall->foodstall_name }}">
-                            <p class="text-sm text-gray-600 mb-2">{{ $food->foodstall->foodstall_location }}</p>
-                            <p class="text-sm text-gray-600 mb-4">{{ $food->foodstall->foodstall_desc }}</p>
-                            <p class="text-sm text-gray-600 mb-2">Contact: {{ $food->foodstall->foodstall_contact }}</p>
-                            <p class="text-sm text-gray-600 mb-4">
-                                @for ($i = 0; $i < $food->foodstall->foodstall_rating; $i++)
-                                    ⭐
-                                @endfor
-                            </p>
+                            <h3 class="text-lg font-bold mb-2">Dapat dibeli di</h3>
+                            @foreach ($relatedFoods as $relatedFood)
+                                @if ($relatedFood->foodstall)
+                                    <div class="mb-4">
+                                        <h4 class="text-lg font-bold">{{ $relatedFood->foodstall->foodstall_name }}</h4>
+                                        <img class="w-full h-32 object-cover mb-2" src="{{ asset('storage/' . $relatedFood->foodstall->foodstall_pict) }}" alt="{{ $relatedFood->foodstall->foodstall_name }}">
+                                        <p class="text-sm text-gray-600 mb-2">{{ $relatedFood->foodstall->foodstall_location }}</p>
+                                        <p class="text-sm text-gray-600 mb-2">{{ $relatedFood->foodstall->foodstall_desc }}</p>
+                                        <p class="text-sm text-gray-600 mb-2">Contact: {{ $relatedFood->foodstall->foodstall_contact }}</p>
+                                        <p class="text-sm text-gray-600 mb-2">
+                                            @for ($i = 0; $i < $relatedFood->foodstall->foodstall_rating; $i++)
+                                                ⭐
+                                            @endfor
+                                        </p>
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                     @else
-                        <p class="text-red-500 mt-4">Foodstall information not available.</p>
+                        <p class="text-red-500 mt-4">No other foods found with the same name.</p>
                     @endif
                 </div>
             </div>
