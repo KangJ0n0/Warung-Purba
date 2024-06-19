@@ -38,7 +38,7 @@ new #[Layout('layouts.guest')] class extends Component
 
 <div>
     <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+        {{ __('Lupa password? No problem👍🏿 beri tahu kami alamat email yang kamu gunakan untuk login dan kami akan mengirimkan tautan untuk melakukan reset password.') }}
     </div>
 
     <!-- Session Status -->
@@ -54,7 +54,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button>
-                {{ __('Email Password Reset Link') }}
+                {{ __('Kirim email reset password') }}
             </x-primary-button>
         </div>
     </form>

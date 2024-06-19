@@ -52,7 +52,7 @@ new class extends Component
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 
                 @auth
-                <img class="size-11 rounded-full object-cover" src="https://penguinui.s3.amazonaws.com/component-assets/avatar-8.webp" alt="Rounded avatar">
+                <img class="size-11 rounded-full object-cover" src="https://cdn.sazumi.moe/file/3ornbz.png" alt="Rounded avatar">
 
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
