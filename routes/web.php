@@ -8,6 +8,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\FavoriteController;
 
 
+
 Route::view('/', 'welcome');
 
 Route::view('dashboard', 'dashboard')
