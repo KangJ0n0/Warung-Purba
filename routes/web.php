@@ -6,7 +6,7 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\FavoriteController;
-
+Use App\Http\Controllers\UserController;
 
 
 Route::view('/', 'welcome');
@@ -91,6 +91,9 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('
         Route::get('/bookmarks', [FavoriteController::class, 'index'])->name('bookmarks');
 
         Route::post('/favorites/store', [FavoriteController::class, 'store'])->name('favorites.store');
+        
+        Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+
         
 
 

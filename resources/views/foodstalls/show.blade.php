@@ -37,7 +37,7 @@
             </div>
 
             <div class="bg-white shadow-md rounded-lg overflow-hidden p-6 mb-6">
-                <h3 class="text-xl font-bold mb-4">Semua Makanan di Warung ({{ $foodstall->foodstall_name }})</h3>
+                <h3 class="text-xl font-bold mb-4">Semua Makanan di ({{ $foodstall->foodstall_name }})</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($foodstall->foods as $food)
                         @if ($food->foodstall_id === $foodstall->id)
@@ -53,16 +53,32 @@
                 </div>
             </div>
 
+          
             <div class="bg-white shadow-md rounded-lg overflow-hidden p-6 mb-6">
                 <h3 class="text-xl font-bold mb-4">Reviews</h3>
                 @forelse ($foodstall->reviews as $review)
                     <div class="border-b border-gray-200 mb-4 pb-4">
-                        <p class="text-sm text-gray-600"><strong>{{ $review->user->name }}</strong> rated:</p>
-                        <p class="text-sm text-gray-600 mb-2">
-                            @for ($i = 0; $i < $review->rating; $i++)
-                                <span class="text-yellow-500">⭐</span>
-                            @endfor
-                        </p>
+                        <div class="flex items-center mb-2">
+                            <a href="{{ route('users.show', $review->user->id) }}" class="mr-4">
+                                @php
+                                    // Determine the picture URL
+                                    $userPictureUrl = $review->user->picture;
+                                    if (!str_starts_with($userPictureUrl, 'http')) {
+                                        $userPictureUrl = asset('storage/' . $userPictureUrl);
+                                    }
+                                @endphp
+                                <img class="w-10 h-10 rounded-full object-cover" src="{{ $userPictureUrl }}" alt="{{ $review->user->name }}">
+                            </a>
+                            
+                            <div>
+                                <h4 class="text-lg font-semibold">{{ $review->user->name }}</h4>
+                                <div class="text-sm text-gray-600">
+                                    @for ($i = 0; $i < $review->rating; $i++)
+                                        <span class="text-yellow-500">⭐</span>
+                                    @endfor
+                                </div>
+                            </div>
+                        </div>
                         <p class="text-sm text-gray-600">{{ $review->comment }}</p>
                         @if ($review->picture)
                             <img src="{{ asset('storage/' . $review->picture) }}" alt="Review Picture" class="mt-2">
@@ -82,7 +98,6 @@
                     <p class="text-sm text-gray-600">No reviews yet.</p>
                 @endforelse
             </div>
-
             @auth
                 <div class="bg-white shadow-md rounded-lg overflow-hidden p-6">
                     <h3 class="text-xl font-bold mb-4">Add a Review</h3>

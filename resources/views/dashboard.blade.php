@@ -56,8 +56,16 @@
             </div> --}} 
             <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
                 @foreach ($rekomendasiMakanan as $food)
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="{{ asset('storage/' . $food->food_pict) }}" alt="{{ $food->food_name }}">
+                <div x-data="{ open: false }" class="relative bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 transform hover:scale-105">
+                    <a href="{{ route('foods.show', $food->id) }}" @mouseenter="open = true" @mouseleave="open = false">
+                        <img src="{{ asset('storage/' . $food->food_pict) }}" alt="{{ $food->food_name }}" class="w-full h-64 object-cover">
+                        <div x-show="open" x-transition class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white p-4">
+                            <div class="text-center">
+                                <h3 class="text-xl font-semibold">{{ $food->food_name }}</h3>
+                               
+                            </div>
+                        </div>
+                    </a>
                 </div>
                 @endforeach
             </div>

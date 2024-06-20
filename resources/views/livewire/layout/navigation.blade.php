@@ -52,7 +52,15 @@ new class extends Component
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 
                 @auth
-                <img class="size-11 rounded-full object-cover" src="{{ auth()->user()->picture }}" alt="Rounded avatar">
+                @php
+                // Determine the picture URL
+                $userPictureUrl = auth()->user()->picture;
+                if (!str_starts_with($userPictureUrl, 'http')) {
+                    $userPictureUrl = asset('storage/' . $userPictureUrl);
+                }
+            @endphp
+            <img class="size-11 rounded-full object-cover" src="{{ $userPictureUrl }}" alt="Rounded avatar">
+            
 
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">

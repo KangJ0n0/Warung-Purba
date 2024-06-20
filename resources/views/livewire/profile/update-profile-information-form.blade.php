@@ -76,7 +76,15 @@ new class extends Component
     <form wire:submit="updateProfileInformation" class="mt-6 space-y-6">
            <div>
             <x-input-label for="picture" :value="__('Picture')" />
-            <img src="{{ Auth::user()->picture }}" alt="User Picture" class="mt-1 block w-24 h-24 rounded-full" />
+                @php
+                    // Determine the picture URL
+                    $userPictureUrl = Auth::user()->picture;
+                    if (!str_starts_with($userPictureUrl, 'http')) {
+                        $userPictureUrl = asset('storage/' . $userPictureUrl);
+                    }
+                @endphp
+                <img class="mt-1 block w-24 h-24 rounded-full" src="{{ $userPictureUrl }}" alt="User Picture">
+            
         </div>
         <div>
             <x-input-label for="name" :value="__('Name')" />
