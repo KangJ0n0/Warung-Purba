@@ -20,6 +20,13 @@ class Review extends Model
         return $this->belongsTo(Foodstall::class);
     }
 
+    public function show($id)
+{
+    $user = User::with('reviews.foodStall')->findOrFail($id);
+
+    return view('profile', compact('user'));
+}
+
     protected $fillable = [
         'user_id',
         'foodstall_id',

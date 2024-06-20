@@ -29,7 +29,7 @@
             <p class="mt-2 text-gray-600">Berbagai saran Warung di Purbalingga Dari Kami</p>
             <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
                 @foreach ($rekomendasiWarung as $foodstall)
-               
+                <a href="{{ route('foodstalls.show', ['foodstall' => $foodstall->id]) }}"> 
                 <div class="bg-white rounded-lg shadow-md overflow-hidden hover:-translate-y-1 cursor-pointer transition-transform duration-300 transform hover:scale-105">
                     <img src="{{ asset('storage/' . $foodstall->foodstall_pict) }}" alt="{{ $foodstall->foodstall_name }}">
                     <div class="p-4 bg-blue-100">
