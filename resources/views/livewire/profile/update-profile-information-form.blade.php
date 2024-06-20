@@ -74,6 +74,10 @@ new class extends Component
     </header>
 
     <form wire:submit="updateProfileInformation" class="mt-6 space-y-6">
+           <div>
+            <x-input-label for="picture" :value="__('Picture')" />
+            <img src="{{ Auth::user()->picture }}" alt="User Picture" class="mt-1 block w-24 h-24 rounded-full" />
+        </div>
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input wire:model="name" id="name" name="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" />
