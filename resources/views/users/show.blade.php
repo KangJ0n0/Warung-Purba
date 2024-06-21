@@ -29,7 +29,7 @@
             </section>
             <section class="relative py-1 bg-blueGray-200">
                 <div class="container mx-auto px-1">
-                    <div class="px-6 mb-6">
+                    <div class="px-6 mb-5">
                         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
                             <div class="flex flex-wrap justify-center">
                                 <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="text-center mt-12">
-                                <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                                <h3 class="text-4xl font-semibold leading-normal text-blueGray-700 mb-2">
                                     {{ $user->name }}
                                 </h3>
                                 <p class="text-lg text-gray-700 mb-4">{{ $user->email }}</p>
@@ -71,8 +71,8 @@
                             </div>
                             <div class="flex flex-wrap justify-center">
                                 <!-- User reviews section -->
-                                <div class="w-full lg:w-8/12 px-4">
-                                    <h4 class="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">Histori Review</h4>
+                                <div class="w-full lg:w-8/12 px-4 py-10">
+                                    <h4 class="text-2xl font-semibold leading-normal text-blueGray-700 mb-2">Histori Review</h4>
                                     @if($reviews->count() > 0)
                                         @foreach($reviews as $review)
                                             <div class="bg-white shadow-md rounded-lg overflow-hidden mb-6">

@@ -95,7 +95,7 @@ new class extends Component
                     </div>
                 @endauth
             </div>
-        </div>
+        
 
         <!-- Hamburger -->
         <div class="-me-2 flex items-center sm:hidden">
@@ -107,7 +107,7 @@ new class extends Component
             </button>
         </div>
     </div>
-
+</div>
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
@@ -126,7 +126,7 @@ new class extends Component
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
+        
             <div class="px-4">
                 @auth
                     <div class="font-medium text-base text-gray-800" x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
@@ -134,7 +134,7 @@ new class extends Component
                 @endauth
             </div>
 
-            <div class="mt-3 space-y-1">
+            
                 @auth
                     <x-responsive-nav-link :href="route('profile')" wire:navigate>
                         {{ __('Profile') }}
@@ -145,14 +145,13 @@ new class extends Component
                         </x-responsive-nav-link>
                     </button>
                 @else
-                    <div class="ms-6">
-                        <a href="{{ route('login') }}" class="text-gray-500 hover:text-gray-700">Login</a>
-                        <span class="text-gray-500 mx-2">|</span>
-                        <a href="{{ route('register') }}" class="text-gray-500 hover:text-gray-700">Register</a>
-                    </div>
+               
+                    <x-responsive-nav-link href="{{ route('login') }}" class="text-gray-500 hover:text-gray-700">Login</x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('register') }}" class="text-gray-500 hover:text-gray-700">Register</x-responsive-nav-link>
+                    
                 @endauth
-            </div>
-        </div>
+            
+        
     </div>
 </nav>
 

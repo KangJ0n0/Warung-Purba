@@ -4,12 +4,17 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
-use Livewire\Volt\Component;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 new class extends Component
 {
+    use WithFileUploads;
+
     public string $name = '';
     public string $email = '';
+    public $picture;
+    public $newPicture;
 
     /**
      * Mount the component.
@@ -18,6 +23,7 @@ new class extends Component
     {
         $this->name = Auth::user()->name;
         $this->email = Auth::user()->email;
+        $this->picture = Auth::user()->picture;
     }
 
     /**
@@ -30,7 +36,12 @@ new class extends Component
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
+            'newPicture' => ['nullable', 'image', 'max:1024'], // Add validation for the new picture
         ]);
+
+        if ($this->newPicture) {
+            $validated['picture'] = $this->newPicture->store('profile-pictures', 'public');
+        }
 
         $user->fill($validated);
 
@@ -60,7 +71,14 @@ new class extends Component
 
         Session::flash('status', 'verification-link-sent');
     }
-}; ?>
+
+    public function render()
+    {
+        return view('livewire.profile');
+    }
+};
+?>
+
 
 <section>
     <header>
@@ -83,7 +101,8 @@ new class extends Component
                         $userPictureUrl = asset('storage/' . $userPictureUrl);
                     }
                 @endphp
-                <img class="mt-1 block w-24 h-24 rounded-full" src="{{ $userPictureUrl }}" alt="User Picture">
+                <img class="mt-1 block w-24 h-24 rounded-full hover:opacity-70 cursor-pointer" src="{{ $userPictureUrl }}" alt="User Picture">
+           
             
         </div>
         <div>
