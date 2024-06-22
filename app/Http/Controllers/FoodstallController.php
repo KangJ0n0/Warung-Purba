@@ -2,33 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Foodstall; 
-//import return type View
-use Illuminate\View\View;
-
+use App\Models\Foodstall;
 use Illuminate\Http\Request;
-
-use Illuminate\View\home;
-
+use Illuminate\View\View;
 
 class FoodstallController extends Controller
 {
-      /**
-     * index
-     *
-     * @return void
-     */
-    public function index() : View
+    public function index(Request $request) : View
     {
-        //get all products
-        $foodstalls = Foodstall::latest()->paginate(10);
+        $query = Foodstall::query();
 
-        //render view with products
+        if ($request->filled('search')) {
+            $query->where('foodstall_name', 'like', '%' . $request->search . '%')
+                  ->orWhere('foodstall_location', 'like', '%' . $request->search . '%')
+                  ->orWhere('foodstall_desc', 'like', '%' . $request->search . '%');
+        }
+
+        $foodstalls = $query->latest()->paginate(10);
+
         return view('warung', compact('foodstalls'));
-        
     }
-
-    
 
     public function create()
     {
@@ -38,10 +31,8 @@ class FoodstallController extends Controller
     public function show($id)
     {
         $foodstall = Foodstall::findOrFail($id);
-        
 
         return view('foodstalls.show', compact('foodstall'));
     }
-
     
 }

@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-2xl font-bold">{{ $food->food_name }}</h2>
+       <h3>Detail Warung</h3>
     </x-slot>
 
     <main class="py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                <img class="w-full h-64 object-cover" src="{{ asset('storage/' . $food->food_pict) }}" alt="{{ $food->food_name }}">
+                <img class="w-full h-96 " src="{{ asset('storage/' . $food->food_pict) }}" alt="{{ $food->food_name }}">
                 <div class="p-6">
                     <form action="{{ route('favorites.store') }}" method="POST">
                         @csrf

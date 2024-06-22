@@ -1,3 +1,5 @@
+
+
 @if (session('success'))
     <div class="bg-green-500 text-white p-4 mb-4 rounded">
         {{ session('success') }}
@@ -6,13 +8,13 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-2xl font-bold">{{ $foodstall->foodstall_name }}</h2>
+        <h2 class="text-2xl font-bold">Detail Warung Makan</h2>
     </x-slot>
 
     <main class="py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white shadow-md rounded-lg overflow-hidden mb-6">
-                <img class="w-full h-96 object-cover" src="{{ asset('storage/' . $foodstall->foodstall_pict) }}" alt="{{ $foodstall->foodstall_name }}">
+                <img class="w-full h-96 " src="{{ asset('storage/' . $foodstall->foodstall_pict) }}" alt="{{ $foodstall->foodstall_name }}">
                 <div class="p-6 flex justify-between items-start">
                     <div>
                         <h2 class="text-3xl font-bold mb-2">{{ $foodstall->foodstall_name }}</h2>
@@ -56,6 +58,22 @@
           
             <div class="bg-white shadow-md rounded-lg overflow-hidden p-6 mb-6">
                 <h3 class="text-xl font-bold mb-4">Reviews</h3>
+            
+                @php
+                    $totalReviews = $foodstall->reviews->count();
+                    $averageRating = $totalReviews > 0 ? $foodstall->reviews->avg('rating') : 0;
+                @endphp
+            
+                <div class="mb-4">
+                    <p class="text-sm text-gray-600">Total Reviews: {{ $totalReviews }}</p>
+                    <p class="text-sm text-gray-600">Average Rating:
+                        @for ($i = 0; $i < round($averageRating); $i++)
+                            <span class="text-yellow-500">⭐</span>
+                        @endfor
+                        ({{ number_format($averageRating, 1) }})
+                    </p>
+                </div>
+            
                 @forelse ($foodstall->reviews as $review)
                     <div class="border-b border-gray-200 mb-4 pb-4">
                         <div class="flex items-center mb-2">

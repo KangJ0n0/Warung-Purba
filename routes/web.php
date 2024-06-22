@@ -67,6 +67,7 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('
                 
 
                 Route::get('/foods/{id}', [FoodController::class, 'show'])->name('foods.show');
+                Route::get('/foods', [FoodController::class, 'index'])->name('foods.index');
 
 
 
@@ -92,7 +93,8 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('
         Route::middleware(['auth'])->post('/toggle-favorite', [FavoriteController::class, 'toggleFavorite'])->name('toggleFavorite');
         Route::get('/catatan', [FavoriteController::class, 'index'])->name('catatan');
 
-  
+        Route::get('/foodstalls', [FoodstallController::class, 'index'])->name('foodstalls.index');
+
   
      
 

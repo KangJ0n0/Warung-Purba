@@ -54,7 +54,7 @@ new #[Layout('layouts.guest')] class extends Component
         <div class="block mt-4">
             <label for="remember" class="inline-flex items-center">
                 <input wire:model="form.remember" id="remember" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Tetap login') }}</span>
+                <span class="ms-2 text-sm text-gray-600">{{ __('Ingat akun ini') }}</span>
             </label>
         </div>
 
@@ -66,7 +66,7 @@ new #[Layout('layouts.guest')] class extends Component
             @endif
 
             <x-primary-button class="ms-3">
-                {{ __('Log in') }}
+                {{ __('Masuk') }}
             </x-primary-button>
         </div>
     </form>

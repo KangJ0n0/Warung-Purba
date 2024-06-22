@@ -8,12 +8,18 @@ use Illuminate\Http\Request;
 
 class FoodController extends Controller
 {
-    public function index() : View
+    public function index(Request $request) : View
     {
-        //get all products
-        $foods = Food::latest()->paginate(10);
+        // Get the search query
+        $query = $request->input('search');
 
-        //render view with products
+        // Get foods filtered by search query
+        $foods = Food::query()
+            ->where('food_name', 'like', '%' . $query . '%')
+            ->latest()
+            ->paginate(10);
+
+        // Render view with filtered foods
         return view('makanan', compact('foods'));
     }
 

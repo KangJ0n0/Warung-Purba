@@ -99,7 +99,7 @@
                                             {{ $reviews->links('pagination::simple-tailwind') }}
                                         </div>
                                     @else
-                                        <p class="text-lg text-gray-700 mb-4">No reviews found.</p>
+                                        <p class="text-lg text-gray-700 mb-4">Review tidak ditemukan.</p>
                                     @endif
                                 </div>
                             </div>
