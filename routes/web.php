@@ -85,12 +85,15 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('
         Route::resource('/makanan', FoodController::class);
      
         Route::post('/toggle-favorite', [FavoriteController::class, 'toggleFavorite'])->name('toggleFavorite');
-        Route::get('/catatan', [FavoriteController::class, 'index'])->name('catatan');
 
         Route::post('/favorites/store', [FavoriteController::class, 'store'])->name('favorites.store');
         
         Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+        Route::middleware(['auth'])->post('/toggle-favorite', [FavoriteController::class, 'toggleFavorite'])->name('toggleFavorite');
+        Route::get('/catatan', [FavoriteController::class, 'index'])->name('catatan');
 
+  
+  
      
 
 

@@ -5,11 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Favorite;
-use App\Models\User;
 
 class FavoriteController extends Controller
 {
-  
+    public function index()
+    {
+        $user = Auth::user();
+
+        if ($user) {
+            $favoriteFoodstalls = $user->favorites()->with('foodstall')->whereNotNull('foodstall_id')->get();
+            $favoriteFoods = $user->favorites()->with('food')->whereNotNull('food_id')->get();
+
+            return view('catatan', compact('favoriteFoodstalls', 'favoriteFoods'));
+        } else {
+            return view('catatan');
+        }
+    }
 
     public function toggleFavorite(Request $request)
     {
@@ -44,15 +55,6 @@ class FavoriteController extends Controller
         }
 
         return redirect()->back()->with('success', $message);
-    }
-
-    public function index()
-    {
-        $user = Auth::user();
-        $favoriteFoodstalls = $user->favorites()->with('foodstall')->whereNotNull('foodstall_id')->get();
-        $favoriteFoods = $user->favorites()->with('food')->whereNotNull('food_id')->get();
-
-        return view('catatan', compact('favoriteFoodstalls', 'favoriteFoods'));
     }
 
     public function store(Request $request)

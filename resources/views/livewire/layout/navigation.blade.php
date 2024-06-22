@@ -78,9 +78,10 @@ new class extends Component
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="url('users/show')" wire:navigate>
+                        <x-dropdown-link :href="route('users.show', auth()->user())" wire:navigate>
                             {{ __('Halaman Profil') }}
                         </x-dropdown-link>
+                    
 
                         <x-dropdown-link :href="route('profile')" wire:navigate>
                             {{ __('Edit Profil') }}
@@ -96,10 +97,11 @@ new class extends Component
                 </x-dropdown>
                 @else
                     <div class="ms-6">
-                        <a href="{{ route('login') }}" class="text-gray-500 hover:text-gray-700">Login</a>
+                        <a href="{{ route('login') }}" class="text-gray-500 hover:text-gray-700">Masuk</a>
                         <span class="text-gray-500 mx-2">|</span>
-                        <a href="{{ route('register') }}" class="text-gray-500 hover:text-gray-700">Register</a>
+                        <a href="{{ route('register') }}" class="text-gray-500 hover:text-gray-700">Daftar</a>
                     </div>
+
                 @endauth
             </div>
         
@@ -127,6 +129,10 @@ new class extends Component
             <x-responsive-nav-link :href="('makanan')" :active="request()->routeIs('makanan')" wire:navigate>
                 {{ __('Makanan') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="('catatan')" :active="request()->routeIs('catatan')" wire:navigate>
+                {{ __('Catatan') }}
+            </x-responsive-nav-link>
+      
             <x-responsive-nav-link :href="('info')" :active="request()->routeIs('info')" wire:navigate>
                 {{ __('info') }}
             </x-responsive-nav-link>
@@ -155,8 +161,8 @@ new class extends Component
                     </button>
                 @else
                
-                    <x-responsive-nav-link href="{{ route('login') }}" class="text-gray-500 hover:text-gray-700">Login</x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('register') }}" class="text-gray-500 hover:text-gray-700">Register</x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('login') }}" class="text-gray-500 hover:text-gray-700">Masuk</x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('register') }}" class="text-gray-500 hover:text-gray-700">Daftar</x-responsive-nav-link>
                     
                 @endauth
             

@@ -1,6 +1,4 @@
 <x-app-layout>
-
-
     
     <!-- Hero Section -->
     <section class="bg-blue-100 py-16">
@@ -9,7 +7,9 @@
             <div class="md:w-1/2">
             <h1 class="text-4xl md:text-5xl font-bold lobster-font">Temukan Makanan Enak Di Purbalingga</h1>
             <p class="mt-4 text-gray-700">Purbalingga menyimpan banyak kuliner lezat yang siap memanjakan lidahmu. Dari makanan tradisional hingga hidangan modern, semuanya tercatat di sini. Yuk, jelajahi dan catat berbagai kelezatan dari Warung Warung yang ada di Purbalingga!.</p>
-            <button class="mt-6 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105" onclick="document.getElementById('recommended-warung').scrollIntoView({ behavior: 'smooth' });">
+            <br>
+            <button class="middle none center rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+  data-ripple-light="true" onclick="document.getElementById('recommended-warung').scrollIntoView({ behavior: 'smooth' });">
                 Mulai
             </button>
             

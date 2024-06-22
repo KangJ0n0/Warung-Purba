@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Semua Makanan di Warung Purbalingga</title>
+    <title>Makanan</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     @vite('resources/css/app.css')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -21,9 +21,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-xl font-bold mb-4">Semua Makanan di Purbalingga</h2>
                 <div class="flex justify-end mb-4">
-                    <select class="border border-gray-300 rounded-md p-2">
-                        <option>Filter</option>
-                    </select>
+                   
                     <input type="text" class="border border-gray-300 rounded-md p-2 ml-4" placeholder="Search...">
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
