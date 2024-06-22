@@ -4,7 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
-use Livewire\Component;
+use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 
 new class extends Component
@@ -15,6 +15,7 @@ new class extends Component
     public string $email = '';
     public $picture;
     public $newPicture;
+    public $newPicturePreview = null;
 
     /**
      * Mount the component.
@@ -52,6 +53,16 @@ new class extends Component
         $user->save();
 
         $this->dispatch('profile-updated', name: $user->name);
+
+$this->redirect(url('profile'));
+    }
+
+    /**
+     * Live preview for the new picture.
+     */
+    public function updatedNewPicture(): void
+    {
+        $this->newPicturePreview = $this->newPicture->temporaryUrl();
     }
 
     /**
@@ -72,41 +83,53 @@ new class extends Component
         Session::flash('status', 'verification-link-sent');
     }
 
-    public function render()
+    /**
+     * Render the component.
+     *
+     * @return mixed
+     */
+    public function render(): mixed
     {
-        return view('livewire.profile');
+        return view('livewire.profile.update-profile-information-form', [
+            'newPicturePreview' => $this->newPicturePreview,
+        ]);
     }
 };
 ?>
-
-
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+            {{ __('Informasi Profil') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Ubah nama akun dan password akun mu") }}
         </p>
     </header>
 
-    <form wire:submit="updateProfileInformation" class="mt-6 space-y-6">
-           <div>
-            <x-input-label for="picture" :value="__('Picture')" />
-                @php
-                    // Determine the picture URL
-                    $userPictureUrl = Auth::user()->picture;
-                    if (!str_starts_with($userPictureUrl, 'http')) {
-                        $userPictureUrl = asset('storage/' . $userPictureUrl);
-                    }
-                @endphp
-                <img class="mt-1 block w-24 h-24 rounded-full hover:opacity-70 cursor-pointer" src="{{ $userPictureUrl }}" alt="User Picture">
-           
-            
-        </div>
+    <form wire:submit.prevent="updateProfileInformation" class="mt-6 space-y-6">
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="picture" :value="__('Gambar profil')" />
+            @php
+                // Determine the picture URL
+                $userPictureUrl = Auth::user()->picture;
+                if (!str_starts_with($userPictureUrl, 'http')) {
+                    $userPictureUrl = asset('storage/' . $userPictureUrl);
+                }
+            @endphp
+            <div class="mt-2">
+                @if ($newPicturePreview)
+                    <img class="block w-24 h-24 rounded-full" src="{{ $newPicturePreview }}" alt="New Picture Preview">
+                @else
+                    <img class="block w-24 h-24 rounded-full" src="{{ $userPictureUrl }}" alt="User Picture">
+                @endif
+            </div>
+            <input type="file" wire:model="newPicture" class="mt-2 block w-full text-sm text-gray-600" />
+            <x-input-error class="mt-2" :messages="$errors->get('newPicture')" />
+        </div>
+
+        <div>
+            <x-input-label for="name" :value="__('Nama')" />
             <x-text-input wire:model="name" id="name" name="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
@@ -136,10 +159,10 @@ new class extends Component
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('Simpan') }}</x-primary-button>
 
             <x-action-message class="me-3" on="profile-updated">
-                {{ __('Saved.') }}
+                {{ __('Berhasil disimpan.') }}
             </x-action-message>
         </div>
     </form>

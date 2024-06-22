@@ -39,18 +39,18 @@ new class extends Component
                     <x-nav-link :href="url('makanan')" :active="request()->routeIs('makanan')" wire:navigate>
                         {{ __('Makanan') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('kontak')" :active="request()->routeIs('kontak')" wire:navigate>
-                        {{ __('Kontak') }}
+                    <x-nav-link :href="url('catatan')" :active="request()->routeIs('catatan')">
+                        {{ __('Catatan') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('bookmarks')" :active="request()->routeIs('bookmarks')">
-                        {{ __('Bookmarks') }}
+                    <x-nav-link :href="url('info')" :active="request()->routeIs('info')" wire:navigate>
+                        {{ __('Info') }}
                     </x-nav-link>
+                 
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                
                 @auth
                 @php
                 // Determine the picture URL
@@ -59,7 +59,10 @@ new class extends Component
                     $userPictureUrl = asset('storage/' . $userPictureUrl);
                 }
             @endphp
-            <img class="size-11 rounded-full object-cover" src="{{ $userPictureUrl }}" alt="Rounded avatar">
+            <a href="{{ route('users.show', auth()->user()) }}" class="hover:scale-110">
+                <img class="size-10 rounded-full object-cover" src="{{ $userPictureUrl }}" alt="Rounded avatar">
+            </a>
+            </a>
             
 
                 <x-dropdown align="right" width="48">
@@ -75,8 +78,12 @@ new class extends Component
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="url('users/show')" wire:navigate>
+                            {{ __('Halaman Profil') }}
+                        </x-dropdown-link>
+
                         <x-dropdown-link :href="route('profile')" wire:navigate>
-                            {{ __('Profile') }}
+                            {{ __('Edit Profil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -120,24 +127,26 @@ new class extends Component
             <x-responsive-nav-link :href="('makanan')" :active="request()->routeIs('makanan')" wire:navigate>
                 {{ __('Makanan') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="('kontak')" :active="request()->routeIs('kontak')" wire:navigate>
-                {{ __('Kontak') }}
+            <x-responsive-nav-link :href="('info')" :active="request()->routeIs('info')" wire:navigate>
+                {{ __('info') }}
             </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
         
-            <div class="px-4">
+           
                 @auth
-                    <div class="font-medium text-base text-gray-800" x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
-                    <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
+                    <x-responsive-nav-link href="{{ route('users.show', auth()->user()) }}" class="text-gray-500 hover:text-gray-700">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                    
                 @endauth
-            </div>
+       
 
             
                 @auth
                     <x-responsive-nav-link :href="route('profile')" wire:navigate>
-                        {{ __('Profile') }}
+                        {{ __('Edit Profil') }}
                     </x-responsive-nav-link>
                     <button wire:click="logout" class="w-full text-start" onclick="location.reload()">
                         <x-responsive-nav-link>

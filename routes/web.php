@@ -28,12 +28,9 @@ Route::view('warung', 'warung')
 Route::view('makanan', 'makanan')
         ->name('makanan');
 
-Route::view('kontak', 'kontak')
-        ->name('kontak');
+Route::view('info', 'info')
+        ->name('info');
 
-        Route::middleware(['auth'])->get('/bookmarks', function () {
-                return view('bookmarks');
-            })->name('bookmarks');
             
 
       
@@ -88,14 +85,13 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('
         Route::resource('/makanan', FoodController::class);
      
         Route::post('/toggle-favorite', [FavoriteController::class, 'toggleFavorite'])->name('toggleFavorite');
-        Route::get('/bookmarks', [FavoriteController::class, 'index'])->name('bookmarks');
+        Route::get('/catatan', [FavoriteController::class, 'index'])->name('catatan');
 
         Route::post('/favorites/store', [FavoriteController::class, 'store'])->name('favorites.store');
         
         Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 
-        
-
+     
 
 
 require __DIR__.'/auth.php';

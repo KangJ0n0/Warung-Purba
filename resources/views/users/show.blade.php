@@ -55,9 +55,11 @@
                                             <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">20</span>
                                             <span class="text-sm text-blueGray-400">Followers</span>
                                         </div>
-                                        <div class="mr-4 p-3 text-center invisible">
-                                            <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">30</span>
-                                            <span class="text-sm text-blueGray-400">Following</span>
+                                        <div class="mr-4 p-3 text-center">
+                                            <div class="mr-4 p-3 text-center">
+                                            
+                                            </div>
+                
                                         </div>
                                     </div>
                                 </div>

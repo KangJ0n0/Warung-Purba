@@ -1,3 +1,4 @@
+@auth
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-2xl font-bold">Bookmarks</h2>
@@ -37,3 +38,6 @@
         </div>
     </div>
 </x-app-layout>
+@else
+<P>lOGIN DULU</P>
+@endauth

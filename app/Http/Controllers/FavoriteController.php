@@ -52,7 +52,7 @@ class FavoriteController extends Controller
         $favoriteFoodstalls = $user->favorites()->with('foodstall')->whereNotNull('foodstall_id')->get();
         $favoriteFoods = $user->favorites()->with('food')->whereNotNull('food_id')->get();
 
-        return view('bookmarks', compact('favoriteFoodstalls', 'favoriteFoods'));
+        return view('catatan', compact('favoriteFoodstalls', 'favoriteFoods'));
     }
 
     public function store(Request $request)
