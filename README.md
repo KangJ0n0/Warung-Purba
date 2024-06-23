@@ -5,14 +5,14 @@ Warung Purba is a web application designed to showcase local eateries ("warung")
 </p>
 
 
-## Features
-#### <li>Browse Warungs: Discover a comprehensive list of warungs in Purbalingga, complete with their locations, opening hours, and contact information.
+## 🛠️ Features
+#### <li>   Browse Warungs: Discover a comprehensive list of warungs in Purbalingga, complete with their locations, opening hours, and contact information.
 #### <li>Food Listings: Explore detailed descriptions and images of popular dishes offered by each warung.
 #### <li>User Reviews: Read and write reviews for warungs to share your dining experiences with others.
 #### <li>Search and Filter: Easily find warungs and dishes based on specific criteria such as cuisine type, price range, and user ratings.
 
 #### <li>Responsive Design: Enjoy a seamless browsing experience on both desktop and mobile devices.
-## Technology Stack
+## 💻 Technology Stack
 
 #### <li> Frontend: Developed using modern web technologies including HTML, CSS, JavaScript, for a dynamic and responsive user interface.
 #### <li> Backend: Built with PHP and Laravel to handle server-side logic and API requests.
