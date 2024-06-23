@@ -37,7 +37,7 @@
                         <p class="mt-2 text-gray-600"> {{ $foodstall->foodstall_location }}</p>
                     </div>
                 </div>
-                </div>
+                
                 @endforeach
             </div>
         </div>
