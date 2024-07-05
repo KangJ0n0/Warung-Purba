@@ -58,6 +58,9 @@
                     </a>
                 @endforeach
             </div>
+            <div class="mt-8">
+                {{ $foodstalls->links() }} <!-- Menampilkan tombol-tombol pagination -->
+            </div>
         @else
             <p>Warung tidak ditemukan.</p>
         @endif

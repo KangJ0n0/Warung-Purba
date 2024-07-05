@@ -12,6 +12,11 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
    
     
     public function favoriteFoodstalls()
@@ -29,6 +34,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class);
     }
+
+    public function canAccessPanel(\Filament\Panel $panel): bool
+{
+    //if you are using spatie roles and permissions, you can use the `hasRole` or `hasPermissions` methods 
+    return $this->hasRole(['admin']);
+}
     
     /**
      * The attributes that are mass assignable.

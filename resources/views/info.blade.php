@@ -1,63 +1,147 @@
 <x-app-layout>
-  <div class="flex flex-col min-h-screen">
-      <div class="flex-grow">
-          <div class="max-w-xl mx-auto p-16">
-              <div class="flow-root">
-                  <ul class="-mb-8">
-                      <li>
-                          <div class="relative pb-8">
-                              <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-                              <div class="relative flex items-start space-x-3">
-                                  <div>
-                                      <div class="relative px-1">
-                                          <div class="h-8 w-8 bg-blue-500 rounded-full ring-8 ring-white flex items-center justify-center">
-                                              <svg class="text-white h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.3/tailwind.min.css" integrity="sha512-wl80ucxCRpLkfaCnbM88y4AxnutbGk327762eM9E/rRTvY/ZGAHWMZrYUq66VQBYMIYDFpDdJAOGSLyIPHZ2IQ==" crossorigin="anonymous" />
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+      <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@600&display=swap" rel="stylesheet">
+  </head>
+
+  <style>
+      * {
+          font-family: 'Quicksand', sans-serif;
+      }
+  </style>
+
+  <body>
+      <article id="the-article">
+          <div>
+              <div class="mx-auto max-w-6xl">
+                  <div class="p-2 rounded">
+                      <div class="flex flex-col md:flex-row">
+                          <div class="md:w-1/3 p-4 text-sm">
+                              <div class="sticky inset-x-0 top-0 left-0 py-12">
+                                  <div class="text-3xl text-green-400 mb-8">List Pertanyaan.</div>
+                                  <div class="mb-2">Masih bingung ?</div>
+                                  <div class="text-xs text-gray-600">Hubungi kami untuk lebih detailnya</div>
+                              </div>
+                          </div>
+                          <div class="md:w-2/3 py-12">
+                              <div class="p-4">
+                                      <div class="item px-6 py-6" x-data="{isOpen : false}">
+                                          <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
+                                              <h4 :class="{'text-green-400 font-medium' : isOpen == true}">Mengapa saya harus login untuk menggunakan fitur-fitur tertentu ?</h4>
+                                              <svg
+                                                  :class="{'transform rotate-180' : isOpen == true}"
+                                                  class="w-5 h-5 text-gray-500"
+                                                  fill="none" stroke-linecap="round"
+                                                  stroke-linejoin="round" stroke-width="2"
+                                                  viewBox="0 0 24 24" stroke="currentColor">
+                                                  <path d="M19 9l-7 7-7-7"></path>
                                               </svg>
+                                          </a>
+                                          <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
+                                              <p> Untuk memberikan pengalaman pengguna yang aman dan personal, login diperlukan agar kami dapat mengidentifikasi pengguna dengan tepat. Ini membantu kami melindungi informasi pribadi Anda dan memastikan bahwa Anda memiliki akses yang sesuai ke fitur-fitur kami.</p>
                                           </div>
                                       </div>
-                                  </div>
-                                  <div class="min-w-0 flex-1 py-0">
-                                      <div class="text-md text-gray-500">
-                                          <div>
-                                              <a href="#" class="font-medium text-gray-900 mr-2">0.5</a>
-                                              <a href="#" class="my-0.5 relative inline-flex items-center bg-white rounded-full border border-gray-300 px-3 py-0.5 text-sm">
-                                                  <div class="absolute flex-shrink-0 flex items-center justify-center">
-                                                      <span class="h-1.5 w-1.5 rounded-full bg-red-800" aria-hidden="true"></span>
-                                                  </div>
-                                                  <div class="ml-3.5 font-medium text-gray-900">Tidak stabil</div>
-                                              </a>
-                                          </div>
-                                          <span class="whitespace-nowrap text-sm">21 Juni 2024</span>
+                                      <div class="item px-6 py-6" x-data="{isOpen : false}">
+                                        <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
+                                            <h4 :class="{'text-green-400 font-medium' : isOpen == true}">Mengapa Harus Menggunakan Email saat membuat Akun ?</h4>
+                                            <svg
+                                                :class="{'transform rotate-180' : isOpen == true}"
+                                                class="w-5 h-5 text-gray-500"
+                                                fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path d="M19 9l-7 7-7-7"></path>
+                                            </svg>
+                                        </a>
+                                        <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
+                                            <p>Email digunakan sebagai cara standar untuk mengonfirmasi identitas Anda saat mereset password. Dengan menggunakan email yang terdaftar, kami dapat memverifikasi bahwa permintaan reset password berasal dari Anda. Ini adalah langkah keamanan yang penting untuk melindungi akun Anda dari akses yang tidak sah..</p>
+                                        </div>
+                                    </div>
+                                    <div class="item px-6 py-6" x-data="{isOpen : false}">
+                                      <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
+                                          <h4 :class="{'text-green-400 font-medium' : isOpen == true}">Apa yang website ini lakukan?</h4>
+                                          <svg
+                                              :class="{'transform rotate-180' : isOpen == true}"
+                                              class="w-5 h-5 text-gray-500"
+                                              fill="none" stroke-linecap="round"
+                                              stroke-linejoin="round" stroke-width="2"
+                                              viewBox="0 0 24 24" stroke="currentColor">
+                                              <path d="M19 9l-7 7-7-7"></path>
+                                          </svg>
+                                      </a>
+                                      <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
+                                          <p> Warung purba adalah sebuah platform  platform digital yang menyediakan informasi lengkap dan akurat tentang warung makan di daerah Purbalingga. Aplikasi ini akan membantu pengguna dalam menemukan warung makan yang sesuai dengan selera dan kebutuhan pengguna.</p>
                                       </div>
-                                      <div class="mt-2 text-gray-700">
-                                          <p>Gawe terus deploy blabalbalabablablalballablball She gave me head on the toilet call it skibidi
-                                              Bitch, open up your mouth, lemme take a pee
-                                              She said she only listen to Brazilian Phonk
-                                              Im rizzing up all these gyatts like I'm Baby Gronk (Rizz)
-                                              You know I keep it lemon, like 24/7
-                                              I run up on your block and send your boy straight to heaven
-                                              You know I'm typing gyatt in the chat for Kai Cenat
-                                          </p>
-                                      </div>
                                   </div>
+                                  <div class="item px-6 py-6" x-data="{isOpen : false}">
+                                    <a href="#" class="flex items-center justify-between" @click.prevent="isOpen = true">
+                                        <h4 :class="{'text-green-400 font-medium' : isOpen == true}">Apa yang bisa saya lakukan di website ini?</h4>
+                                        <svg
+                                            :class="{'transform rotate-180' : isOpen == true}"
+                                            class="w-5 h-5 text-gray-500"
+                                            fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </a>
+                                    <div x-show="isOpen" @click.away="isOpen = false" class="mt-3" :class="{'text-gray-600' : isOpen == true}">
+                                        <p> Pengunjung dapat memberikan rating dan menulis ulasan tentang warung, membantu warung meningkatkan layanan mereka dan memberikan informasi berharga bagi pengunjung lain. Fitur ini juga mendorong interaksi dan partisipasi dari komunitas pengguna.</p>
+                                    </div>
+                                </div>
+                                 
                               </div>
                           </div>
-                      </li>
-                      <li>
-                          <div class="relative pb-8">
-                              <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-                              <div class="relative flex items-start space-x-3">
-                                  <div>
-                                      <!-- Add your additional content here -->
-                                  </div>
-                              </div>
-                          </div>
-                      </li>
-                  </ul>
+                      </div>
+                  </div>
               </div>
           </div>
+      </article>
+
+      <div
+          x-data="scrollHandler(document.getElementById('the-article'))"
+          x-cloak
+          aria-hidden="true"
+          @scroll.window="calculateHeight(window.scrollY)"
+          class="fixed h-screen w-1 hover:bg-gray-200 top-0 left-0 bg-gray-300">
+          <div :style="`max-height:${height}%`" class="h-full bg-green-400"></div>
       </div>
-      <x-footer></x-footer>
-  </div>
+
+      <div
+          id="alpine-devtools"
+          x-data="devtools()"
+          x-show="alpines.length"
+          x-init="start()">
+      </div>
+      
+      <script>
+          function scrollHandler(element = null) {
+              return {
+                  height: 0,
+                  element: element,
+                  calculateHeight(position) {
+                      const distanceFromTop = this.element.offsetTop;
+                      const contentHeight = this.element.clientHeight;
+                      const visibleContent = contentHeight - window.innerHeight;
+                      const start = Math.max(0, position - distanceFromTop);
+                      const percent = (start / visibleContent) * 100;
+                      requestAnimationFrame(() => {
+                          this.height = percent;
+                      });
+                  },
+                  init() {
+                      this.element = this.element || document.body;
+                      this.calculateHeight(window.scrollY);
+                  }
+              };
+          }
+      </script>
+  </body>
+  <x-footer></x-footer>
 </x-app-layout>

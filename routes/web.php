@@ -9,6 +9,13 @@ use App\Http\Controllers\FavoriteController;
 Use App\Http\Controllers\UserController;
 
 
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+        // Filament routes or other admin routes
+});
+
+
+
 Route::view('/', 'welcome');
 
 Route::view('dashboard', 'dashboard')
@@ -69,8 +76,7 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('
                 Route::get('/foods/{id}', [FoodController::class, 'show'])->name('foods.show');
                 Route::get('/foods', [FoodController::class, 'index'])->name('foods.index');
 
-
-
+              
         
         Route::get('/foodstalls', [FoodstallController::class, 'index']);
 

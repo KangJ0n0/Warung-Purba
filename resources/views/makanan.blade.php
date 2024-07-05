@@ -63,7 +63,9 @@
                     @endforeach
                 </div>
             
-
+                <div class="mt-8">
+                    {{ $foods->links() }} <!-- Menampilkan tombol-tombol pagination -->
+                </div>
             </div>
         </main>
     </x-app-layout>

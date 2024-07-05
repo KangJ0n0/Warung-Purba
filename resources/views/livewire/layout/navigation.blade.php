@@ -22,10 +22,14 @@ new class extends Component
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
+                <div class="flex items-center">
+                    <div class="h-10 w-10 self-center mr-2 rounded-full">
+                        <img class="h-10 w-10 self-center rounded-full" src="https://cdn.sazumi.moe/file/is4kxw.png" />
+                    </div>
+                    <div>
+                        <a href="/dashboard" class="text-2xl no-underline text-gray-800 hover:text-blue-600 font-bold">WARUNG PURBA</a><br>
+                        <span class="text-xs text-gray-600">Cari info Warung disini</span>
+                    </div>
                 </div>
 
                 <!-- Navigation Links -->

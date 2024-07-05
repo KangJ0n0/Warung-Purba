@@ -30,7 +30,7 @@ new #[Layout('layouts.guest')] class extends Component
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
-        $validated['picture'] = 'https://cdn.sazumi.moe/file/3ornbz.png'; // Set default picture URL
+        $validated['picture'] = 'https://www.pngall.com/wp-content/uploads/5/Profile-PNG-File.png'; // Set default picture URL
 
         event(new Registered($user = User::create($validated)));
 

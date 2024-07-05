@@ -18,7 +18,7 @@ class FoodstallController extends Controller
                   ->orWhere('foodstall_desc', 'like', '%' . $request->search . '%');
         }
 
-        $foodstalls = $query->latest()->paginate(10);
+        $foodstalls = $query->latest()->paginate(8);
 
         return view('warung', compact('foodstalls'));
     }

@@ -74,7 +74,7 @@
                             <div class="flex flex-wrap justify-center">
                                 <!-- User reviews section -->
                                 <div class="w-full lg:w-8/12 px-4 py-10">
-                                    <h4 class="text-2xl font-semibold leading-normal text-blueGray-700 mb-2">Histori Review</h4>
+                                    <h4 class="text-2xl font-semibold leading-normal text-blueGray-700 mb-2">Histori Ulasan</h4>
                                     @if($reviews->count() > 0)
                                         @foreach($reviews as $review)
                                             <div class="bg-white shadow-md rounded-lg overflow-hidden mb-6">

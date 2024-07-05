@@ -17,7 +17,7 @@ class FoodController extends Controller
         $foods = Food::query()
             ->where('food_name', 'like', '%' . $query . '%')
             ->latest()
-            ->paginate(10);
+            ->paginate(8);
 
         // Render view with filtered foods
         return view('makanan', compact('foods'));

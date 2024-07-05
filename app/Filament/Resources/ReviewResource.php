@@ -49,7 +49,7 @@ class ReviewResource extends Resource
                     ]),
                     Forms\Components\FileUpload::make('picture')
                     ->label('Picture')
-                    ->accept('image/*')
+                    ->image()
                     ->required(),
                 ]),
             ]);
@@ -59,7 +59,7 @@ class ReviewResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('users.name')
+                Tables\Columns\TextColumn::make('user.name')
                 ->label('Nama Akun')
                 ->searchable(),
                 Tables\Columns\TextColumn::make('foodstall.foodstall_name')
