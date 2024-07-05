@@ -4,8 +4,9 @@
     <main class="py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                <img class="w-full h-96 object-cover" src="{{ asset('storage/' . $food->food_pict) }}" alt="{{ $food->food_pict }}">
-                
+                <div class="p-6 flex justify-center items-center">
+                    <img class="w-full h-96 object-cover" src="{{ asset('storage/' . $food->food_pict) }}" alt="{{ $food->food_pict }}">
+                </div>
                 <div class="p-6 flex justify-between items-start">
                     <h1 class="text-3xl font-bold mb-4">{{ $food->food_name }}</h1>
                     <div>

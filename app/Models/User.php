@@ -3,13 +3,15 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+ 
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable;
 
@@ -36,10 +38,10 @@ class User extends Authenticatable
     }
 
     public function canAccessPanel(\Filament\Panel $panel): bool
-{
-    //if you are using spatie roles and permissions, you can use the `hasRole` or `hasPermissions` methods 
-    return $this->hasRole(['admin']);
-}
+    {
+        // Check if the user has the 'admin' role
+        return $this->role === 'admin';
+    }
     
     /**
      * The attributes that are mass assignable.
@@ -81,5 +83,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Favorite::class);
     }
-    
+
+
 }

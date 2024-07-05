@@ -86,10 +86,14 @@
                                             $userPictureUrl = asset('storage/' . $userPictureUrl);
                                         }
                                     @endphp
-                                    <img class="w-12 h-12 rounded-full object-cover" src="{{ $userPictureUrl }}" alt="{{ $review->user->name }}">
+                                    <a href="{{ route('users.show', $review->user->id) }}">
+                                        <img class="w-12 h-12 rounded-full object-cover" src="{{ $userPictureUrl }}" alt="{{ $review->user->name }}">
+                                    </a>
                                 </div>
                                 <div class="ml-4">
+                                    <a href="{{ route('users.show', $review->user->id) }}">
                                     <h1 class="text-lg text-gray-700 font-semibold hover:underline cursor-pointer">{{ $review->user->name }}</h1>
+                                    </a>
                                     <div class="flex mt-2">
                                         @for ($i = 0; $i < $review->rating; $i++)
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">

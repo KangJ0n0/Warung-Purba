@@ -7,7 +7,8 @@
                     <div>
                         <h3 class="text-xl font-bold mb-4">List Warung</h3>
                         @foreach($favoriteFoodstalls as $favorite)
-                            <div class="border p-4 mb-4 rounded-md shadow-md">
+                        <a href="{{ route('foodstalls.show', $favorite->foodstall_id) }}">
+                            <div class="border p-4 mb-4 rounded-md shadow-md hover:shadow-lg">
                                 <h4 class="text-lg font-semibold">{{ $favorite->foodstall->foodstall_name }}</h4>
                                 <p>{{ $favorite->foodstall->foodstall_location }}</p>
                                 <img class="w-full h-48 object-cover mt-2" src="{{ asset('storage/' . $favorite->foodstall->foodstall_pict) }}" alt="{{ $favorite->foodstall->foodstall_name }}">
@@ -18,12 +19,14 @@
                                     <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">Hapus dari Catatan</button>
                                 </form>
                             </div>
+                        </a>
                         @endforeach
                     </div>
                     <div>
                         <h3 class="text-xl font-bold mb-4">List Makanan</h3>
                         @foreach($favoriteFoods as $favorite)
-                            <div class="border p-4 mb-4 rounded-md shadow-md">
+                        <a href="{{ route('foods.show', $favorite->food_id) }}">
+                            <div class="border p-4 mb-4 rounded-md shadow-md hover:shadow-lg">
                                 <h4 class="text-lg font-semibold">{{ $favorite->food->food_name }}</h4>
                                 <img class="w-full h-48 object-cover mt-2" src="{{ asset('storage/' . $favorite->food->food_pict) }}" alt="{{ $favorite->food->food_name }}">
                                 <!-- Add more details as needed -->
@@ -33,6 +36,7 @@
                                     <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">Hapus</button>
                                 </form>
                             </div>
+                        </a>
                         @endforeach
                     </div>
                 </div>

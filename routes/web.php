@@ -10,9 +10,6 @@ Use App\Http\Controllers\UserController;
 
 
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-        // Filament routes or other admin routes
-});
 
 
 
