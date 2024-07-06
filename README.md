@@ -28,7 +28,7 @@ To get a local copy up and running, follow these simple steps:
 ### Clone the repository
 
 ```sh
-git clone https://github.com/yourusername/warung-purba.git
+git clone https://github.com/KangJ0n0/warung-purba.git
 cd warung-purba
 ```
 
